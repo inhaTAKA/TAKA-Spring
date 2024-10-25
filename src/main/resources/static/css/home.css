@@ -1,0 +1,101 @@
+/* Header */
+.header {
+    background-color: #8c8cff;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-nav a {
+    text-decoration: none;
+    color: blue;
+}
+
+/* Buttons */
+.auth-buttons .btn {
+    margin-left: 10px;
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: #d3d3d3;
+    height: 400px;
+    position: relative;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+}
+
+.placeholder-text {
+    width: 300px;
+    height: 50px;
+    background-color: #aaa;
+    margin-bottom: 10px;
+}
+
+.placeholder-text.small {
+    width: 250px;
+    height: 20px;
+}
+
+/* Button Group */
+.btn-group {
+    margin-top: 10px;
+}
+
+/* Placeholder for Image */
+.hero-placeholder {
+    width: 200px;
+    height: 200px;
+    background-color: #777;
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+}
+
+/* Cards Section */
+.cards-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    width: 150px;
+}
+
+.icon-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    margin: 0 auto 10px;
+}
