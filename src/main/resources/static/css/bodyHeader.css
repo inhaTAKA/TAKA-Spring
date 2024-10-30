@@ -4,11 +4,14 @@ body {
     font-family: Arial, sans-serif;
     color: white;
 }
-.header {
+
+/* Header 스타일 */
+.bodyHeader {
     background-color: #343a40;
     padding: 15px;
 }
-.container {
+
+.bodyHeader-container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -16,68 +19,77 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.logo {
+
+/* 로고 스타일 */
+.bodyHeader-logo {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: white;
 }
-.logo svg {
+.bodyHeader-logo svg {
     width: 40px;
     height: 32px;
 }
-.nav {
+
+/* 네비게이션 스타일 */
+.bodyHeader-nav {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     gap: 15px;
 }
-.nav-item {
+
+.bodyHeader-nav-item {
     color: white;
     text-decoration: none;
     padding: 5px 10px;
 }
-.nav-item:hover {
+.bodyHeader-nav-item:hover {
     color: #adb5bd;
 }
-.nav-item.active {
+.bodyHeader-nav-item.active {
     color: #adb5bd;
 }
-.search-form {
+
+/* 검색창 스타일 */
+.bodyHeader-search-form {
     display: flex;
 }
-.search-form input[type="search"] {
+.bodyHeader-search-form input[type="search"] {
     padding: 7px;
     border: none;
     border-radius: 4px;
     outline: none;
     width: 200px;
 }
-.buttons {
+
+/* 버튼 스타일 */
+.bodyHeader-buttons {
     display: flex;
     gap: 10px;
 }
-.button {
+.bodyHeader-button {
     padding: 7px 15px;
     border-radius: 4px;
     font-size: 14px;
     cursor: pointer;
     border: 1px solid transparent;
 }
-.button-outline-light {
+.bodyHeader-button-outline-light {
     background-color: transparent;
     color: white;
     border-color: white;
 }
-.button-outline-light:hover {
+.bodyHeader-button-outline-light:hover {
     background-color: #adb5bd;
 }
-.button-warning {
+.bodyHeader-button-warning {
     background-color: #ffc107;
     color: black;
     border-color: #ffc107;
 }
-.button-warning:hover {
+.bodyHeader-button-warning:hover {
     background-color: #e0a800;
 }
