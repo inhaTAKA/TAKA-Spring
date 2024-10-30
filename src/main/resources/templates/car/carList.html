@@ -8,57 +8,59 @@
     <link rel="stylesheet" href="/css/carList.css">
 </head>
 <body>
-<div th:replace="~{framents/bodyheader :: bodyHeader}"></div>
-    <div class="container">
-        <div class="search-bar">
-            <input type="text" placeholder="Hinted search text">
-            <button>🔍</button>
+<!-- 헤더 Fragment 불러오기 -->
+<header th:replace="fragments/bodyheader :: bodyHeader"></header>
+
+<div class="container">
+    <div class="search-bar">
+        <input type="text" placeholder="Hinted search text">
+        <button>🔍</button>
+    </div>
+    <div class="filter-buttons">
+        <button class="filter-button available">모집중</button>
+        <button class="filter-button unavailable">모집마감</button>
+    </div>
+    <!-- 카드 1 (모집중) -->
+    <div class="card">
+        <div class="car-icon-container">
+            <div class="car-icon">🚗</div>
+            <p class="car-model">차종: SONATA</p>
         </div>
-        <div class="filter-buttons">
-            <button class="filter-button available">모집중</button>
-            <button class="filter-button unavailable">모집마감</button>
+        <div class="info-container">
+            <div class="info">
+                <p><strong>출발지역:</strong> 인천 소래포구</p>
+                <p><strong>경유가능지역:</strong> 인천 연수구, 인천 미추홀구</p>
+                <p><strong>희망카풀비용:</strong> 2000 ~ 5000</p>
+                <p><strong>소개:</strong> 편안하게 모시겠습니다~</p>
+            </div>
+            <div class="current-people">현재인원: 2/4</div>
         </div>
-        <!-- 카드 1 (모집중) -->
-        <div class="card">
-            <div class="car-icon-container">
-                <div class="car-icon">🚗</div>
-                <p class="car-model">차종: SONATA</p>
-            </div>
-            <div class="info-container">
-                <div class="info">
-                    <p><strong>출발지역:</strong> 인천 소래포구</p>
-                    <p><strong>경유가능지역:</strong> 인천 연수구, 인천 미추홀구</p>
-                    <p><strong>희망카풀비용:</strong> 2000 ~ 5000</p>
-                    <p><strong>소개:</strong> 편안하게 모시겠습니다~</p>
-                </div>
-                <div class="current-people">현재인원: 2/4</div>
-            </div>
-            <div class="gender-icon male"></div>
-            <div class="actions-container">
-                <button class="action-button apply">신청하기</button>
-                <button class="action-button inquire">문의하기</button>
-            </div>
-        </div>
-        <!-- 카드 2 (모집마감) -->
-        <div class="card unavailable">
-            <div class="car-icon-container">
-                <div class="car-icon">🚘</div>
-                <p class="car-model">차종: AVANTE</p>
-            </div>
-            <div class="info-container">
-                <div class="info">
-                    <p><strong>출발지역:</strong> 경기도 화성</p>
-                    <p><strong>경유가능지역:</strong> 경기도 오산, 경기도 수원</p>
-                    <p><strong>희망카풀비용:</strong> 5000 ~ 8000</p>
-                    <p><strong>소개:</strong> 혼자 가기 심심해요 ㅠㅠ 같이 갈 친구 구합니다!</p>
-                </div>
-                <div class="current-people">현재인원: 4/4</div>
-            </div>
-            <div class="gender-icon female"></div>
-            <div class="actions-container">
-                <button class="action-button inquire">문의하기</button>
-            </div>
+        <div class="gender-icon male"></div>
+        <div class="actions-container">
+            <button class="action-button apply">신청하기</button>
+            <button class="action-button inquire">문의하기</button>
         </div>
     </div>
+    <!-- 카드 2 (모집마감) -->
+    <div class="card unavailable">
+        <div class="car-icon-container">
+            <div class="car-icon">🚘</div>
+            <p class="car-model">차종: AVANTE</p>
+        </div>
+        <div class="info-container">
+            <div class="info">
+                <p><strong>출발지역:</strong> 경기도 화성</p>
+                <p><strong>경유가능지역:</strong> 경기도 오산, 경기도 수원</p>
+                <p><strong>희망카풀비용:</strong> 5000 ~ 8000</p>
+                <p><strong>소개:</strong> 혼자 가기 심심해요 ㅠㅠ 같이 갈 친구 구합니다!</p>
+            </div>
+            <div class="current-people">현재인원: 4/4</div>
+        </div>
+        <div class="gender-icon female"></div>
+        <div class="actions-container">
+            <button class="action-button inquire">문의하기</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>

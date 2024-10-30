@@ -1,14 +1,15 @@
- /* 기본 스타일 */
- body {
+/* 기본 스타일 */
+body {
+    margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+    display: block; /* 수평 정렬 대신 기본 블록 레이아웃 */
 }
+/* 메인 컨테이너 */
 .container {
     width: 100%;
     max-width: 800px;
+    margin: 0 auto; /* 중앙 정렬 */
 }
 /* 검색바 */
 .search-bar {
