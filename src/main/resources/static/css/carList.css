@@ -1,0 +1,150 @@
+ /* 기본 스타일 */
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.container {
+    width: 100%;
+    max-width: 800px;
+}
+/* 검색바 */
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #e4d3e8;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 16px;
+    background-color: #f4f4f9;
+}
+.search-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+/* 필터 버튼 */
+.filter-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.filter-button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+}
+.available {
+    background-color: #4caf50;
+    color: #fff;
+}
+.unavailable {
+    background-color: #ff7043;
+    color: #fff;
+}
+/* 카드 스타일 */
+.card {
+    position: relative;
+    background-color: #d0f0c0;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.card.unavailable {
+    background-color: #ffc0cb;
+}
+.car-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+}
+.car-icon {
+    font-size: 60px;
+}
+.car-model {
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center;
+}
+.info-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.info {
+    text-align: left;
+}
+.info p {
+    margin: 5px 0;
+}
+.gender-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+.gender-icon.male {
+    background-color: #4a90e2;
+}
+.gender-icon.female {
+    background-color: #e94e77;
+}
+.current-people {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+/* 모던 버튼 스타일 */
+.actions-container {
+    position: absolute;
+    bottom: -25px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+}
+.action-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.action-button.apply {
+    background: linear-gradient(45deg, #4caf50, #81c784);
+    color: white;
+}
+.action-button.inquire {
+    background: linear-gradient(45deg, #2196f3, #64b5f6);
+    color: white;
+}
+.action-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
