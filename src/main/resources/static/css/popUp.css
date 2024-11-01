@@ -1,0 +1,143 @@
+/* 팝업 오버레이 배경 */
+.popup-overlay {
+    display: none; /* 기본으로 숨김 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* 살짝 어두운 배경 */
+    backdrop-filter: blur(5px); /* 블러 효과 추가 */
+    z-index: 1000;
+}
+
+/* 팝업창 스타일 */
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8); /* 초기 크기 축소 */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 600px; /* 가로 길이 증가 */
+    text-align: center;
+    font-family: Arial, sans-serif;
+    opacity: 0; /* 초기 상태에서 투명 */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* 애니메이션 */
+}
+
+/* 팝업 열릴 때 애니메이션 적용 */
+.popup-overlay.show .popup-content {
+    transform: translate(-50%, -50%) scale(1); /* 크기 확대 */
+    opacity: 1; /* 투명도 증가 */
+}
+
+/* 팝업 헤더 스타일 */
+.popup-header {
+    background-color: #f9e000;
+    padding: 15px;
+    margin: -30px -30px 20px -30px; /* 헤더가 모서리에 맞도록 설정 */
+    border-radius: 10px 10px 0 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* label 스타일 추가 */
+label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* 입력 및 선택 스타일 */
+.popup-input, .popup-select {
+    width: 100%; /* 입력칸을 전체 너비로 조정 */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+/* 가로로 나란히 배치할 요소 */
+.popup-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* 버튼 스타일 */
+.popup-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.popup-button-close {
+    background-color: #ccc;
+    color: #333;
+    margin-top: 10px;
+    font-size: 14px;
+}
+/* 카드에 마우스를 올렸을 때 효과 */
+.card {
+    cursor: pointer; /* 마우스를 올렸을 때 손가락 모양 커서 표시 */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 마우스를 올렸을 때 그림자 추가 */
+    transform: translateY(-5px); /* 살짝 위로 올라가는 효과 */
+}
+/* "내 차에 태우기" 팝업 상단 색상 변경 */
+#drivePopup .popup-header {
+    background-color: #d8b4f8; /* 연보라색 */
+    color: #333; /* 텍스트 색상 */
+    padding: 15px;
+    margin: -30px -30px 20px -30px; /* 헤더가 모서리에 맞도록 설정 */
+    border-radius: 10px 10px 0 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+/* 우측 상단 X 버튼 스타일 */
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.popup-close:hover {
+    color: #555;
+}
+/* 카드 이미지 높이 고정 */
+.card-img {
+    width: 100%; /* 카드 너비에 맞추기 */
+    height: 200px; /* 모든 카드 이미지를 동일한 높이로 설정 */
+    object-fit: cover; /* 이미지 비율을 유지하면서 잘림 처리 */
+}
+
+/* Hero 이미지 설정 */
+.hero-image {
+    width: 100%; /* 화면 전체 너비 */
+    height: auto; /* 비율에 맞게 높이 자동 조정 */
+    display: block;
+    margin-bottom: 20px; /* 버튼과 이미지 사이 여백 */
+}

@@ -8,34 +8,50 @@
     margin-left: 10px;
 }
 
-/* Hero Section */
+/* Hero Section 배경 이미지 설정 */
 .hero-section {
-    background-color: #d3d3d3;
-    height: 400px;
-    position: relative;
+    position: relative; /* 요소들이 배경 위로 오게 설정 */
+    background-image: url('../image/hero_image.jpg'); /* 배경 이미지로 설정 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 400px; /* Hero 섹션 높이 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* 텍스트 색상을 흰색으로 설정 */
 }
 
+/* Hero Section 안의 내용 */
 .hero-content {
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
+    text-align: center;
+    color: white;
+    position: absolute; /* 부모 요소인 hero-section 위에 배치 */
+    top: 50%; /* 수직 가운데 정렬 */
+    left: 50%; /* 수평 가운데 정렬 */
+    transform: translate(-50%, -50%); /* 가운데 정렬 보정 */
 }
 
+/* Placeholder 텍스트 스타일 */
 .placeholder-text {
+    font-size: 24px;
+    margin-bottom: 10px;
     width: 300px;
     height: 50px;
     background-color: #aaa;
-    margin-bottom: 10px;
 }
 
 .placeholder-text.small {
+    font-size: 16px;
     width: 250px;
     height: 20px;
 }
 
 /* Button Group */
 .btn-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
     margin-top: 10px;
 }
 
@@ -61,23 +77,54 @@
     margin: 0 auto;                         /* 섹션을 화면 중앙에 정렬 */
 }
 
+/* 카드 스타일 */
 .card {
     text-align: center;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     width: 100%;                           /* 카드가 섹션 내에서 가로 공간을 꽉 채우도록 설정 */
-    height: 350px;                          /* 카드의 높이를 300px로 설정 */
+    height: 350px;                          /* 카드의 높이를 350px로 설정 */
     display: flex;                          /* 카드 내부 요소들을 중앙 정렬하기 위해 플렉스 사용 */
     flex-direction: column;                 /* 수직으로 정렬 */
     justify-content: center;                /* 수직 중앙 정렬 */
     align-items: center;                    /* 수평 중앙 정렬 */
     gap: 10px;                              /* 카드 내부 요소 간의 간격 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 카드 이미지 고정 */
 .card-img {
     width: 80%;                             /* 이미지 너비를 카드 너비의 80%로 설정 */
     height: auto;                           /* 이미지 비율을 유지하면서 높이를 자동으로 설정 */
     border-radius: 8px;                     /* 이미지 모서리에 약간의 곡률을 추가 */
     object-fit: cover;                      /* 이미지가 부모 요소에 맞게 잘리는 방식 설정 */
+}
+
+/* 카드 텍스트 스타일 */
+.card p {
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* 팝업창 닫기 버튼 X 스타일 */
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.popup-close:hover {
+    color: #555;
 }
