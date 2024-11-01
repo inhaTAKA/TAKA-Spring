@@ -1,7 +1,7 @@
 package com.example.napoli.service;
 
 import com.example.napoli.entity.User;
-import com.example.napoli.repository.UserRepository;
+import com.example.napoli.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

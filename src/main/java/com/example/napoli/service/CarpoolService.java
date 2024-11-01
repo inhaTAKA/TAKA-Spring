@@ -1,7 +1,7 @@
 package com.example.napoli.service;
 
 import com.example.napoli.entity.Carpool;
-import com.example.napoli.repository.CarpoolRepository;
+import com.example.napoli.domain.repository.CarpoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

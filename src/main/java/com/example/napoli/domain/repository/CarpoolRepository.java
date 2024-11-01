@@ -1,4 +1,4 @@
-package com.example.napoli.repository;
+package com.example.napoli.domain.repository;
 
 import com.example.napoli.entity.Carpool;
 import org.springframework.data.jpa.repository.JpaRepository;
