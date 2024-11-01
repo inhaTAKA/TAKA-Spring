@@ -17,8 +17,14 @@ public class User {
     @Column(name = "USER_ID")
     private Long userId;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
 
     @Column(name = "PASSWORD")
     private String password;
@@ -27,7 +33,7 @@ public class User {
     private String className;
 
     @Column(name = "GRADE")
-    private String grade;
+    private Long grade;
 
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;
