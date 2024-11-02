@@ -45,10 +45,12 @@
     </div>
 
     <!-- 등록된 차 보기 카드 -->
-    <div class="card">
-        <img src="/image/330751707375854377.jpg" alt="Image 3" class="card-img">
-        <p>등록된 차 보기</p>
-    </div>
+    <form th:action="@{/carList}" method="get">
+        <button class="card">
+            <img src="/image/330751707375854377.jpg" alt="Image 3" class="card-img">
+            <p>등록된 차 보기</p>
+        </button>
+    </form>
 </section>
 
 <!-- "내 차에 태우기" 팝업창 구조 -->

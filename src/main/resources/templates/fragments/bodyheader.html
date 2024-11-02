@@ -1,27 +1,31 @@
 <!-- bodyheader.html -->
+<html xmlns:th="http://www.thymeleaf.org/" lang="ko">
 <header class="bodyHeader" th:fragment="bodyHeader">
-  <div class="bodyHeader-container">
-    <a href="/" class="bodyHeader-logo">
-      <svg role="img" aria-label="Logo">
-        <rect width="40" height="32" fill="#fff"></rect>
-      </svg>
-    </a>
+    <div class="bodyHeader-container">
+        <a href="/" class="bodyHeader-logo">
+            <svg role="img" aria-label="Logo">
+                <rect width="40" height="32" fill="#fff"></rect>
+            </svg>
+        </a>
 
-    <ul class="bodyHeader-nav">
-      <li><a href="#" class="bodyHeader-nav-item active">Home</a></li>
-      <li><a href="#" class="bodyHeader-nav-item">Features</a></li>
-      <li><a href="#" class="bodyHeader-nav-item">Pricing</a></li>
-      <li><a href="#" class="bodyHeader-nav-item">FAQs</a></li>
-      <li><a href="#" class="bodyHeader-nav-item">About</a></li>
-    </ul>
+        <ul class="bodyHeader-nav">
+            <li><a href="#" class="bodyHeader-nav-item active">Home</a></li>
+            <li><a href="#" class="bodyHeader-nav-item">Features</a></li>
+            <li><a href="#" class="bodyHeader-nav-item">Pricing</a></li>
+            <li><a href="#" class="bodyHeader-nav-item">FAQs</a></li>
+            <li><a href="#" class="bodyHeader-nav-item">About</a></li>
+        </ul>
 
-    <form class="bodyHeader-search-form">
-      <input type="search" placeholder="Search..." aria-label="Search">
-    </form>
+        <form class="bodyHeader-search-form">
+            <input type="search" placeholder="Search..." aria-label="Search">
+        </form>
 
-    <div class="bodyHeader-buttons">
-      <button class="bodyHeader-button bodyHeader-button-outline-light">Login</button>
-      <button class="bodyHeader-button bodyHeader-button-warning">Sign-up</button>
+        <form th:action="@{/login}" method="get">
+            <div class="bodyHeader-buttons">
+                <button class="bodyHeader-button bodyHeader-button-outline-light">Login</button>
+                <button class="bodyHeader-button bodyHeader-button-warning">Sign-up</button>
+            </div>
+        </form>
     </div>
-  </div>
 </header>
+</html>
