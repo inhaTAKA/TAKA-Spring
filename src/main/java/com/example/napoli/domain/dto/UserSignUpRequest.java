@@ -6,21 +6,19 @@ import com.example.napoli.domain.entity.User;
 import java.time.LocalDate;
 
 public record UserSignUpRequest(
-        String name,
-        String email,
-        String phoneNumber,
+        String username,
         String password,
-        String className,
-        Long grade
+        String confirmPassword
 ) {
-    public User toEntity(UserSignUpRequest userSignUpRequest) {
+
+    public static UserSignUpRequest empty() {
+        return new UserSignUpRequest(null, null, null);
+    }
+
+    public User toEntity() {
         return User.builder()
-                .name(name)
-                .email(email)
+                .username(username)
                 .password(password)
-                .phoneNumber(phoneNumber)
-                .className(className)
-                .grade(grade)
                 .createdAt(LocalDate.now())
                 .build();
     }

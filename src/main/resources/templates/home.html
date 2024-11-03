@@ -28,7 +28,6 @@
 </section>
 
 
-
 <!-- Cards Section -->
 <section class="cards-section">
     <!-- "내 차에 태우기" 카드 -->
@@ -60,16 +59,16 @@
         <h2 class="popup-header">내 차에 태우기</h2>
 
         <label for="popupStartArea">출발 지역을 입력하세요.</label>
-        <input type="text" id="popupStartArea" class="popup-input" placeholder="Value" />
+        <input type="text" id="popupStartArea" class="popup-input" placeholder="Value"/>
 
         <label for="popupPossibleArea">경유 가능 지역을 입력하세요.</label>
-        <input type="text" id="popupPossibleArea" class="popup-input" placeholder="Value" />
+        <input type="text" id="popupPossibleArea" class="popup-input" placeholder="Value"/>
 
         <label>희망 카풀 요금을 입력하세요.</label>
         <div class="popup-row">
-            <input type="text" id="drivePopupStartFare" class="popup-input" placeholder="Value" />
+            <input type="text" id="drivePopupStartFare" class="popup-input" placeholder="Value"/>
             <span style="align-self: center;">~</span>
-            <input type="text" id="drivePopupEndFare" class="popup-input" placeholder="Value" />
+            <input type="text" id="drivePopupEndFare" class="popup-input" placeholder="Value"/>
         </div>
 
         <label for="drivePopupGender">희망 성별을 선택하세요</label>
@@ -80,7 +79,9 @@
             <option value="no_preference">성별을 밝히기 싫음</option>
         </select>
 
-        <button id="popupRegisterButton" class="popup-button">등록하기</button>
+        <form th:action="@{/carList}" method="get">
+            <button id="popupRegisterButton" class="popup-button">등록하기</button>
+        </form>
     </div>
 </div>
 
@@ -91,13 +92,13 @@
         <h2 class="popup-header">다른 차에 탑승하기</h2>
 
         <label for="popupStartLocation">희망 픽업 지역을 입력하세요</label>
-        <input type="text" id="popupStartLocation" class="popup-input" placeholder="Value" />
+        <input type="text" id="popupStartLocation" class="popup-input" placeholder="Value"/>
 
         <label>희망 카풀 요금을 입력하세요.</label>
         <div class="popup-row">
-            <input type="text" id="carpoolPopupStartFare" class="popup-input" placeholder="Value" />
+            <input type="text" id="carpoolPopupStartFare" class="popup-input" placeholder="Value"/>
             <span style="align-self: center;">~</span>
-            <input type="text" id="carpoolPopupEndFare" class="popup-input" placeholder="Value" />
+            <input type="text" id="carpoolPopupEndFare" class="popup-input" placeholder="Value"/>
         </div>
 
         <label for="popupGenderCarpool">희망 성별을 선택하세요</label>
@@ -108,7 +109,9 @@
             <option value="no_preference">성별을 밝히기 싫음</option>
         </select>
 
-        <button id="popupSearchButton" class="popup-button">검색하기</button>
+        <form th:action="@{/carList}" method="get">
+            <button id="popupSearchButton" class="popup-button">검색하기</button>
+        </form>
     </div>
 </div>
 

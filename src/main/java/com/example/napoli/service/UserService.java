@@ -8,5 +8,6 @@ import org.springframework.stereotype.Service;
 
 
 public interface UserService {
-    public void signUpUser(UserSignUpRequest userSignUpRequest);
+    void signUpUser(User user);
+    void signInUser(User user);
 }

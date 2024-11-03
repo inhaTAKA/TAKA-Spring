@@ -13,19 +13,21 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
 
     @Override
-    public void signUpUser(UserSignUpRequest userSignUpRequest) {
-        User byEmail = userRepository.findByEmail(userSignUpRequest.email());
+    public void signUpUser(User user) {
+        User byEmail = userRepository.findByUsername(user.getUsername());
         if(byEmail != null) {
-            throw new RuntimeException("이미 존재하는 이메일입니다");
+            throw new RuntimeException("이미 존재하는 아이디입니다");
         }
-        User byPhone = userRepository.findByPhoneNumber(userSignUpRequest.phoneNumber());
-        if(byPhone != null) {
-            throw new RuntimeException("이미 존재하는 휴대폰 번호입니다.");
-        }
-        userRepository.save(userSignUpRequest.toEntity(userSignUpRequest));
+        userRepository.save(user);
+    }
+
+    @Override
+    public void signInUser(User user) {
+
     }
 
 }
