@@ -17,7 +17,7 @@ public class UserService {
     public void signUpUser(UserSignUpRequest userRequest) {
         User username = userRepository.findUserByUsername(userRequest.username());
         if (username != null) {
-            throw new RuntimeException("이미 존재하는 아이디입니다");
+            throw new RuntimeException("이미 존재하는 이름입니다.");
         }
         userRepository.save(userRequest.toEntity());
     }

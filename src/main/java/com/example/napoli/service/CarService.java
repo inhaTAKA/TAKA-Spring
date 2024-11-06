@@ -18,11 +18,6 @@ public class CarService {
         if (byCarId != null) {
             throw new RuntimeException("이미 존재하는 차량번호입니다.");
         }
-        Car car = Car.builder()
-                .user(carCreateRequest.user())
-                .carId(carCreateRequest.carId())
-                .model(carCreateRequest.model())
-                .carStatus(carCreateRequest.carStatus())
-                .build();
+        carRepository.save(carCreateRequest.toEntity());
     }
 }
