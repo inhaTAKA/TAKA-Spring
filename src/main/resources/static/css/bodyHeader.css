@@ -93,3 +93,9 @@ body {
 .bodyHeader-button-warning:hover {
     background-color: #e0a800;
 }
+
+.navbar-logo {
+    height: 45px; /* 로고의 높이를 설정하세요. */
+    width: auto; /* 비율을 유지하면서 가로 크기를 자동으로 조정합니다. */
+    margin: 0 10px; /* 로고 양옆에 여백을 줍니다. */
+}

@@ -128,3 +128,28 @@
 .popup-close:hover {
     color: #555;
 }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.dropdown-group {
+    display: flex;
+    gap: 10px; /* 드롭다운 사이의 간격 조정 */
+    margin-top: 5px;
+}
+
+.dropdown-group select {
+    flex: 1; /* 각 드롭다운이 동일한 비율로 공간을 차지 */
+}
+
+.form-group label {
+    margin-right: 10px; /* 라벨과 드롭다운 사이에 간격 추가 */
+    min-width: 150px; /* 라벨의 최소 너비 설정 (적절히 조정 가능) */
+}
+
+.form-group select {
+    flex-grow: 1; /* 드롭다운이 가능한 너비를 차지하도록 설정 */
+}
