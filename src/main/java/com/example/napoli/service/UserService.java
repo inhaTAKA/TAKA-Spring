@@ -19,15 +19,8 @@ public class UserService {
         User username = userRepository.findUserByUsername(userRequest.username());
         if (username != null) {
             throw new RuntimeException("이미 존재하는 아이디입니다");
-        } else if (!userRequest.password().equals(userRequest.confirmPassword())) {
-            throw new RuntimeException("비밀번호와 확인 비밀번호가 일치하지 않습니다.");
         }
-        User user = User.builder()
-                .username(userRequest.username())
-                .password(userRequest.password())
-                .build();
-
-        userRepository.save(user);
+        userRepository.save(userRequest.toEntity());
     }
 
     public void signInUser(String username, String password) {
