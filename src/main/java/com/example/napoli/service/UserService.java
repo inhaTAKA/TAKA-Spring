@@ -1,6 +1,5 @@
 package com.example.napoli.service;
 
-import com.example.napoli.domain.dto.UserLoginRequest;
 import com.example.napoli.domain.dto.UserSignUpRequest;
 import com.example.napoli.domain.entity.User;
 import com.example.napoli.domain.repository.UserRepository;

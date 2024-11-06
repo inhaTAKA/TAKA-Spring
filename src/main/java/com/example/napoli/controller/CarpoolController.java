@@ -1,5 +1,6 @@
 package com.example.napoli.controller;
 
+import com.example.napoli.domain.dto.RegisterCarDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,4 +12,9 @@ public class CarpoolController {
         return "/car/carList";
     }
 
+    @PostMapping("/registerCar")
+    public String registerCar(@ModelAttribute RegisterCarDto registerCarDto) {
+        System.out.println(registerCarDto.toString());
+        return "redirect:/carList";
+    }
 }
