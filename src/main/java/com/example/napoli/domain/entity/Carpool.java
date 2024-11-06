@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @Builder
 @Table(name = "Carpools")
 public class Carpool {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CARPOOL_ID")
@@ -35,14 +36,15 @@ public class Carpool {
     private String arrivalLocation;
 
     @Column(name = "DEPARTURE_TIME")
-    private String departureTime;
+    private LocalDateTime departureTime;
 
     @Column(name = "ARRIVAL_TIME")
-    private String arrivalTime;
+    private LocalDateTime arrivalTime;
 
     @Column(name = "BOOKING_STATUS")
     private String bookingStatus;
 
     @Column(name = "AVAILABLE_SEATS")
-    private String availableSeats;
+    private Integer availableSeats;
+
 }
