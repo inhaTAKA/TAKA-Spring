@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class CarService {
+
     private final CarRepository carRepository;
+
     public void createCar(CarCreateRequest carCreateRequest) {
         Car byCarId = carRepository.findByCarId(carCreateRequest.carId());
         if (byCarId != null) {

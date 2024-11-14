@@ -8,6 +8,7 @@ import com.example.napoli.domain.entity.Car;
 import com.example.napoli.domain.repository.CarpoolRepository;
 import com.example.napoli.domain.repository.UserRepository;
 import com.example.napoli.domain.repository.CarRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,33 +17,23 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CarpoolService {
 
     private final CarpoolRepository carpoolRepository;
     private final UserRepository userRepository;
-    private final CarRepository carRepository;
-
-    @Autowired
-    public CarpoolService(CarpoolRepository carpoolRepository, UserRepository userRepository, CarRepository carRepository) {
-        this.carpoolRepository = carpoolRepository;
-        this.userRepository = userRepository;
-        this.carRepository = carRepository;
-    }
 
     public CarpoolResponseDTO createCarpool(CarpoolUpdateDTO carpoolUpdateDTO) {
         Optional<User> userOptional = userRepository.findById(carpoolUpdateDTO.getUserId());
-        Optional<Car> carOptional = carRepository.findById(carpoolUpdateDTO.getCarId());
 
-        if (!userOptional.isPresent() || !carOptional.isPresent()) {
+        if (userOptional.isEmpty()) {
             return new CarpoolResponseDTO();
         }
 
         User user = userOptional.get();
-        Car car = carOptional.get();
 
         Carpool carpool = Carpool.builder()
                 .user(user)
-                .car(car)
                 .departureLocation(carpoolUpdateDTO.getDepartureLocation())
                 .arrivalLocation(carpoolUpdateDTO.getArrivalLocation())
                 .departureTime(carpoolUpdateDTO.getDepartureTime())
