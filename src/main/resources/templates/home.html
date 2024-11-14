@@ -33,7 +33,7 @@
     <!-- "내 차에 태우기" 카드 -->
     <div class="card" id="driveCard">
         <img src="/image/drive_image.jpg" alt="내 차에 태우기 이미지" class="card-img">
-        <p>내 차에 등록하기</p>
+        <p>내 차 등록하기</p>
     </div>
 
 
@@ -54,7 +54,7 @@
 
 <!-- "내 차에 태우기" 팝업창 구조 -->
 <div id="drivePopup" class="popup-overlay">
-    <form th:action="@{/registerCar}" th:object="${carInfo}" method="post">
+    <form th:action="@{/carpools/registerCar}" th:object="${carInfo}" method="post">
         <div class="popup-content">
             <span class="popup-close" id="closeDrivePopup">×</span> <!-- 우측 상단 X 버튼 추가 -->
             <h2 class="popup-header">내 차 등록하기</h2>
@@ -74,6 +74,12 @@
                 <select id="sigungu" name="sigungu" th:field="*{secondStartAddress}" disabled>
                     <option value="" disabled selected>목적지의 시/군/구를 선택하세요</option>
                 </select>
+            </div>
+
+            <div>
+                <label>
+                    <input type="text" placeholder="상세 주소를 입력하세요." th:field="*{detailedAddress}" style="width: 100%">
+                </label>
             </div>
 
             <hr>

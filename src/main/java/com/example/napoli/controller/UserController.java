@@ -1,7 +1,9 @@
 package com.example.napoli.controller;
 
 import com.example.napoli.domain.dto.UserSignUpRequest;
+import com.example.napoli.domain.entity.User;
 import com.example.napoli.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -26,11 +28,10 @@ public class UserController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute UserSignUpRequest userSignUpRequest,
-                               @RequestParam("actionType") String actionType) {
+                               @RequestParam("actionType") String actionType,
+                               HttpSession session) {
         if ("signup".equals(actionType)) {
             try {
-                log.info("sinup");
-                log.info(userSignUpRequest.toString());
                 userService.signUpUser(userSignUpRequest);
             } catch (RuntimeException e) {
                 log.error(e.getMessage());
@@ -40,17 +41,18 @@ public class UserController {
             return "redirect:/login";
         } else if ("signin".equals(actionType)) {
             try {
-                userService.signInUser(userSignUpRequest.username(), userSignUpRequest.password());
+                User user = userService.signInUser(userSignUpRequest.username(), userSignUpRequest.password());
+                // 세션에 정보 저장
+                session.setAttribute("user", user);
             } catch (Exception e) {
                 log.error(e.getMessage());
                 return "redirect:/login";
             }
+//            User sessionUser = (User) session.getAttribute("user");
+//            log.info(sessionUser.getUsername());
             log.info("로그인 성공");
             return "redirect:/";
         }
-//        else if ("reset".equals(actionType)) {
-//
-//        }
         return "redirect:/login";
     }
 }
