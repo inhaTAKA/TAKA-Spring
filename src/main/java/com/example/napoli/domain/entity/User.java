@@ -33,12 +33,12 @@ public class User {
     @Column(name = "LOCATION")
     private String location;
 
+    @Column(name = "GENDER")
+    private String gender;
+
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Car> car;
-
-
-
 }

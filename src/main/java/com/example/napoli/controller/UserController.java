@@ -29,6 +29,8 @@ public class UserController {
                                @RequestParam("actionType") String actionType) {
         if ("signup".equals(actionType)) {
             try {
+                log.info("sinup");
+                log.info(userSignUpRequest.toString());
                 userService.signUpUser(userSignUpRequest);
             } catch (RuntimeException e) {
                 log.error(e.getMessage());
