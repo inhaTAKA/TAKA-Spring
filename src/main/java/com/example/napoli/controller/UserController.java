@@ -1,7 +1,6 @@
 package com.example.napoli.controller;
 
 import com.example.napoli.domain.dto.UserSignUpRequest;
-import com.example.napoli.domain.entity.User;
 import com.example.napoli.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
