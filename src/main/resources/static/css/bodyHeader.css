@@ -99,3 +99,27 @@ body {
     width: auto; /* 비율을 유지하면서 가로 크기를 자동으로 조정합니다. */
     margin: 0 10px; /* 로고 양옆에 여백을 줍니다. */
 }
+
+.logout-container {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    padding: 10px;
+}
+
+/* 버튼 스타일 */
+.logout-button {
+    background-color: #f44336; /* 빨간색 */
+    color: white; /* 버튼 글자색 */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; /* 둥근 버튼 */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* 호버 애니메이션 */
+}
+
+/* 버튼 호버 효과 */
+.logout-button:hover {
+    background-color: #d32f2f; /* 조금 더 어두운 빨간색 */
+}

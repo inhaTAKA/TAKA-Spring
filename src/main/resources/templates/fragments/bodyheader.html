@@ -2,7 +2,8 @@
 <header class="bodyHeader" th:fragment="bodyHeader">
     <div class="bodyHeader-container">
         <a href="/" class="bodyHeader-logo">
-            <img src="/image/logo.png" alt="로고" class="navbar-logo" style="width: 200px !important; height: auto !important;">
+            <img src="/image/logo.png" alt="로고" class="navbar-logo"
+                 style="width: 200px !important; height: auto !important;">
         </a>
 
         <ul class="bodyHeader-nav">
@@ -16,13 +17,20 @@
         <form class="bodyHeader-search-form">
             <input type="search" placeholder="Search..." aria-label="Search">
         </form>
+        <!-- 로그인 -->
+        <div class="bodyHeader-buttons" th:if="${loggedInUser == null}">
+            <form th:action="@{/login}" method="get">
+                <button class="bodyHeader-button bodyHeader-button-outline-light">로그인</button>
+                <button class="bodyHeader-button bodyHeader-button-warning">회원가입</button>
+            </form>
+        </div>
+        <!-- 로그아웃 -->
+        <div class="bodyHeader-buttons" th:if="${loggedInUser != null}">
+            <form action="/logout" method="post">
+                <button class="logout-button">로그아웃</button>
+            </form>
+        </div>
 
-        <form th:action="@{/login}" method="get">
-            <div class="bodyHeader-buttons">
-                <button class="bodyHeader-button bodyHeader-button-outline-light">Login</button>
-                <button class="bodyHeader-button bodyHeader-button-warning">Sign-up</button>
-            </div>
-        </form>
     </div>
 </header>
 
