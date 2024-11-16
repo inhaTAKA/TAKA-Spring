@@ -44,15 +44,20 @@ public class UserController {
                 User user = userService.signInUser(userSignUpRequest.username(), userSignUpRequest.password());
                 // 세션에 정보 저장
                 session.setAttribute("user", user);
+                session.setAttribute("loggedInUser", user.getUsername());
             } catch (Exception e) {
                 log.error(e.getMessage());
                 return "redirect:/login";
             }
-//            User sessionUser = (User) session.getAttribute("user");
-//            log.info(sessionUser.getUsername());
             log.info("로그인 성공");
             return "redirect:/";
         }
         return "redirect:/login";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 }

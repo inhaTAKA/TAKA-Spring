@@ -40,5 +40,5 @@ public class User {
     private LocalDate createdAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Car> car;
+    private List<Carpool> carPools;
 }
