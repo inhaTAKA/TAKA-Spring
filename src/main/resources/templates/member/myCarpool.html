@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page</title>
-    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/bodyHeader.css">
+    <link rel="stylesheet" href="/css/myCarpool.css">
 </head>
 <body>
+<div th:replace="~{fragments/bodyheader :: bodyHeader}"></div>
 <main>
     <aside class="sidebar">
         <div class="profile">
@@ -24,17 +26,11 @@
     <section class="content">
         <h2>받은 카풀 신청</h2>
         <div class="request-list">
-            <div class="request-card">
-                <span>Content</span>
-                <span>2024-09-26 23:51:35</span>
-            </div>
-            <div class="request-card">
-                <span>Content</span>
-                <span>2024-09-26 23:51:35</span>
-            </div>
-            <div class="request-card">
-                <span>Content</span>
-                <span>2024-09-26 23:51:35</span>
+            <div th:each="carpool : ${carpools}">
+                <div class="request-card" th:each="booking : ${carpool.getBooking()}">
+                    <span th:text="${booking.getUser().getUsername()}"></span>
+                    <span th:text="${booking.getBookingTime()}"></span>
+                </div>
             </div>
         </div>
     </section>

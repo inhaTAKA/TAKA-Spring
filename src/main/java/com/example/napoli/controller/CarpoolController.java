@@ -1,9 +1,10 @@
 package com.example.napoli.controller;
 
+import com.example.napoli.domain.entity.Booking;
 import com.example.napoli.domain.entity.Carpool;
-import com.example.napoli.domain.entity.User;
 import com.example.napoli.service.BookingService;
 import com.example.napoli.service.Carpool.CarpoolService;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -29,9 +30,32 @@ public class CarpoolController {
             return "redirect:/login";
         }
         List<Carpool> allCarpool = carpoolService.getAllCarpool();
+        List<Boolean> isApplieds = new ArrayList<>();
+        List<Boolean> isMyCarpool = new ArrayList<>();
+        for (Carpool carpool : allCarpool) {
+            if (carpool.getUser().getUserId() == session.getAttribute("userId")) {
+                isMyCarpool.add(true);
+            } else {
+                isMyCarpool.add(false);
+            }
+            if (carpool.getBooking().isEmpty()) {
+                isApplieds.add(false);
+            }
+            for (Booking booking : carpool.getBooking()) {
+                if (booking.getUser().getUserId() == session.getAttribute("userId")) {
+                    isApplieds.add(true);
+                } else {
+                    isApplieds.add(false);
+                }
+            }
+        }
         Collections.reverse(allCarpool);
+        Collections.reverse(isApplieds);
+        Collections.reverse(isMyCarpool);
         model.addAttribute("carpools", allCarpool);
-       return "/car/carList";
+        model.addAttribute("isApplieds", isApplieds);
+        model.addAttribute("isMyCarpool", isMyCarpool);
+        return "/car/carList";
     }
 
     @PostMapping("/registerCar")

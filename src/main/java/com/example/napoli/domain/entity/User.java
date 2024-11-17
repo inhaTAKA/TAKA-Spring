@@ -8,13 +8,13 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-@Table(name = "user")
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "USER_ID")
     private Long userId;
 
@@ -41,4 +41,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Carpool> carPools;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
+
 }

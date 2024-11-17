@@ -11,21 +11,21 @@ import java.util.Date;
 
 @Entity
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-@Table(name = "Bookings")
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "bookings")
 public class Booking {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "BOOKING_ID")
     private Long bookingId;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CARPOOOL_ID")
     private Carpool carpool;
 

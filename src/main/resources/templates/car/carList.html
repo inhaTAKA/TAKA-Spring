@@ -21,7 +21,7 @@
         <button class="filter-button unavailable">모집마감</button>
     </div>
     <!-- 카드 1 (모집중) -->
-    <div class="card" th:each="carpool : ${carpools}">
+    <div class="card" th:each="carpool, iterStat : ${carpools}">
         <div class="car-icon-container">
             <div class="car-icon">🚗</div>
             <p class="car-model">차종: SONATA</p>
@@ -30,7 +30,8 @@
             <div class="info">
                 <input type="hidden" name="carpoolId" th:value="${carpool.getCarpoolId()}" class="carpool-id"/>
                 <p><strong>출발지역: </strong><span
-                        th:text="${carpool.getFirstStartAddress() + ' ' + carpool.getSecondStartAddress()}"></span></p>
+                        th:text="${carpool.getFirstStartAddress() + ' ' + carpool.getSecondStartAddress()}"></span>
+                </p>
                 <p><strong>경유가능지역: </strong><span
                         th:text="${carpool.getFirstTransitAddress1() + ' ' + carpool.getSecondTransitAddress1()}"></span>
                 </p>
@@ -41,14 +42,20 @@
                         th:text="${carpool.getFirstTransitAddress3() + ' ' + carpool.getSecondTransitAddress3()}"></span>
                 </p>
                 <p><strong>희망카풀비용: </strong><span
-                        th:text="${carpool.getMinDesiredCharge() + ' ~ ' + carpool.getMaxDesiredCharge()}"></span></p>
+                        th:text="${carpool.getMinDesiredCharge() + ' ~ ' + carpool.getMaxDesiredCharge()}"></span>
+                </p>
                 <p><strong>운전자 성별: </strong><span th:text="${carpool.getSex()}"></span></p>
                 <p><strong>소개:</strong> 편안하게 모시겠습니다~</p>
             </div>
             <div class="current-people">현재인원: 2/4</div>
             <div class="gender-icon male"></div>
             <div class="actions-container">
-                <button class="action-button apply" onclick="applyCarpool(this)">신청하기</button>
+                <button class="action-button apply"
+                        th:attr="disabled=${isApplieds[iterStat.index] || isMyCarpool[iterStat.index]}"
+                        th:classappend="${isApplieds[iterStat.index] || isMyCarpool[iterStat.index] ? 'disabled' : ''}"
+                        onclick="applyCarpool(this)">
+                    <span th:text="${isMyCarpool[iterStat.index] ? '내가 올린 카풀' : (isApplieds[iterStat.index] ? '✅신청완료' : '신청하기')}"></span>
+                </button>
                 <button class="action-button inquire">문의하기</button>
             </div>
         </div>

@@ -152,6 +152,20 @@ body {
 }
 
 /* 버튼 비활성화 스타일 */
+.action-button.apply.disabled {
+    background-image: none; /* 기존 background 제거 */
+    background-color: #cccccc; /* 회색 */
+    color: #666666; /* 어두운 글자색 */
+    cursor: not-allowed; /* 커서 모양 변경 */
+}
+
+.action-button.apply.mine {
+    background-image: none; /* 기존 background 제거 */
+    background-color: #cccccc; /* 회색 */
+    color: #666666; /* 어두운 글자색 */
+    cursor: not-allowed; /* 커서 모양 변경 */
+}
+
 .action-button.apply:disabled {
     background-image: none; /* 기존 background 제거 */
     background-color: #cccccc; /* 회색 */
