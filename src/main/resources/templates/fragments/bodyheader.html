@@ -13,7 +13,6 @@
             <li><a href="#" class="bodyHeader-nav-item">FAQs</a></li>
             <li><a href="#" class="bodyHeader-nav-item">About</a></li>
         </ul>
-
         <form class="bodyHeader-search-form">
             <input type="search" placeholder="Search..." aria-label="Search">
         </form>
@@ -24,25 +23,21 @@
                 <button class="bodyHeader-button bodyHeader-button-warning">회원가입</button>
             </form>
         </div>
-        <!-- 로그아웃 -->
-        <div class="bodyHeader-buttons" th:if="${loggedInUser != null}">
-            <form action="/logout" method="post">
-                <button class="logout-button">로그아웃</button>
-            </form>
+
+        <div class="dropdown" th:if="${loggedInUser != null}">
+            <!-- 마이페이지 아이콘 -->
+            <a href="#" class="mypage-icon" id="dropdownMenuButton">
+                <img src="/image/mypage_icon.png" alt="마이페이지" width="44" height="44">
+            </a>
+            <!-- 드롭다운 메뉴 -->
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="/mypage" class="dropdown-item">마이페이지</a>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="dropdown-item logout-button">로그아웃</button>
+                </form>
+            </div>
         </div>
-
     </div>
+    <script src="/js/bodyHeader.js"></script>
 </header>
-
-<style>
-    .bodyHeader-logo {
-        display: inline-block;
-    }
-
-    .navbar-logo {
-        width: 200px !important; /* 원하는 크기로 강제 설정 */
-        height: auto !important;
-        max-height: 50px !important; /* 상단바에 맞게 최대 높이 제한 */
-    }
-</style>
 </html>

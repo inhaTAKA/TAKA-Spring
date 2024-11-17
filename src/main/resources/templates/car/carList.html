@@ -28,22 +28,62 @@
         </div>
         <div class="info-container">
             <div class="info">
-                <p><strong>출발지역: </strong><span th:text="${carpool.getFirstStartAddress() + ' ' + carpool.getSecondStartAddress()}"></span></p>
-                <p><strong>경유가능지역: </strong><span th:text="${carpool.getFirstTransitAddress1() + ' ' + carpool.getSecondTransitAddress1()}"></span></p>
-                <p><strong>경유가능지역: </strong><span th:text="${carpool.getFirstTransitAddress2() + ' ' + carpool.getSecondTransitAddress2()}"></span></p>
-                <p><strong>경유가능지역: </strong><span th:text="${carpool.getFirstTransitAddress3() + ' ' + carpool.getSecondTransitAddress3()}"></span></p>
-                <p><strong>희망카풀비용: </strong><span th:text="${carpool.getMinDesiredCharge() + ' ~ ' + carpool.getMaxDesiredCharge()}"></span></p>
+                <input type="hidden" name="carpoolId" th:value="${carpool.getCarpoolId()}" class="carpool-id"/>
+                <p><strong>출발지역: </strong><span
+                        th:text="${carpool.getFirstStartAddress() + ' ' + carpool.getSecondStartAddress()}"></span></p>
+                <p><strong>경유가능지역: </strong><span
+                        th:text="${carpool.getFirstTransitAddress1() + ' ' + carpool.getSecondTransitAddress1()}"></span>
+                </p>
+                <p><strong>경유가능지역: </strong><span
+                        th:text="${carpool.getFirstTransitAddress2() + ' ' + carpool.getSecondTransitAddress2()}"></span>
+                </p>
+                <p><strong>경유가능지역: </strong><span
+                        th:text="${carpool.getFirstTransitAddress3() + ' ' + carpool.getSecondTransitAddress3()}"></span>
+                </p>
+                <p><strong>희망카풀비용: </strong><span
+                        th:text="${carpool.getMinDesiredCharge() + ' ~ ' + carpool.getMaxDesiredCharge()}"></span></p>
                 <p><strong>운전자 성별: </strong><span th:text="${carpool.getSex()}"></span></p>
                 <p><strong>소개:</strong> 편안하게 모시겠습니다~</p>
             </div>
             <div class="current-people">현재인원: 2/4</div>
-        </div>
-        <div class="gender-icon male"></div>
-        <div class="actions-container">
-            <button class="action-button apply">신청하기</button>
-            <button class="action-button inquire">문의하기</button>
+            <div class="gender-icon male"></div>
+            <div class="actions-container">
+                <button class="action-button apply" onclick="applyCarpool(this)">신청하기</button>
+                <button class="action-button inquire">문의하기</button>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    function applyCarpool(button) {
+        // 현재 버튼이 속한 카풀 ID 가져오기
+        const carpoolId = button.closest('.info-container').querySelector('.carpool-id').value;
+
+        // AJAX 요청
+        fetch('/carpools/requestCarpool', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({carpoolId: carpoolId}),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // 응답 데이터 처리
+                alert(data.message); // 성공 메시지 출력
+                button.disabled = true; // 버튼 비활성화
+                button.textContent = '✅신청완료'; // 버튼 텍스트 변경
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('신청에 실패했습니다. 다시 시도해주세요.');
+            });
+    }
+</script>
 </body>
 </html>

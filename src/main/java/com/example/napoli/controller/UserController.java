@@ -43,7 +43,7 @@ public class UserController {
             try {
                 User user = userService.signInUser(userSignUpRequest.username(), userSignUpRequest.password());
                 // 세션에 정보 저장
-                session.setAttribute("user", user);
+                session.setAttribute("userId", user.getUserId());
                 session.setAttribute("loggedInUser", user.getUsername());
             } catch (Exception e) {
                 log.error(e.getMessage());
@@ -59,5 +59,10 @@ public class UserController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+
+    @GetMapping("/mypage")
+    public String myPage() {
+        return "/member/mypage";
     }
 }

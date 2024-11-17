@@ -4,6 +4,6 @@ import jakarta.servlet.http.HttpSession;
 
 public class ControllerUtils {
     public boolean verifyUserSession(HttpSession session) {
-        return session.getAttribute("user") == null;
+        return session.getAttribute("userId") == null;
     }
 }

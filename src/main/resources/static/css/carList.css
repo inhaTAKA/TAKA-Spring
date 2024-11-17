@@ -61,7 +61,7 @@ body {
 /* 카드 스타일 */
 .card {
     position: relative;
-    background-color: #d0f0c0;
+    background-color: #37b6cd;
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 40px;
@@ -149,4 +149,12 @@ body {
 .action-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 버튼 비활성화 스타일 */
+.action-button.apply:disabled {
+    background-image: none; /* 기존 background 제거 */
+    background-color: #cccccc; /* 회색 */
+    color: #666666; /* 어두운 글자색 */
+    cursor: not-allowed; /* 커서 모양 변경 */
 }

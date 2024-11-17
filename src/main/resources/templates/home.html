@@ -139,9 +139,9 @@
 
             <label for="drivePopupGender">희망 성별을 선택하세요</label>
             <select id="drivePopupGender" class="popup-select" th:field="*{sex}">
-                <option value="" disabled selected hidden>성별을 선택하세요</option>
-                <option value="male">남성</option>
-                <option value="female">여성</option>
+                <option value=""disabled selected hidden>성별을 선택하세요</option>
+                <option value="남자">남자</option>
+                <option value="여자">여자</option>
                 <option value="no_preference">성별을 밝히기 싫음</option>
             </select>
             <button type="submit" id="popupRegisterButton" class="popup-button">등록하기</button>
@@ -178,8 +178,6 @@
         </form>
     </div>
 </div>
-
-
 <!-- popUp.js 연결 -->
 <script src="/js/popUp.js"></script>
 </body>

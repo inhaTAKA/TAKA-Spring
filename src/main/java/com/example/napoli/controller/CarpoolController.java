@@ -2,7 +2,12 @@ package com.example.napoli.controller;
 
 import com.example.napoli.domain.entity.Carpool;
 import com.example.napoli.domain.entity.User;
+import com.example.napoli.service.BookingService;
 import com.example.napoli.service.Carpool.CarpoolService;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +20,7 @@ import jakarta.servlet.http.HttpSession;
 public class CarpoolController {
 
     private final CarpoolService carpoolService;
+    private final BookingService bookingService;
     private final ControllerUtils controllerUtils = new ControllerUtils();
 
     @GetMapping
@@ -22,7 +28,9 @@ public class CarpoolController {
         if (controllerUtils.verifyUserSession(session)) {
             return "redirect:/login";
         }
-        model.addAttribute("carpools", carpoolService.getAllCarpool());
+        List<Carpool> allCarpool = carpoolService.getAllCarpool();
+        Collections.reverse(allCarpool);
+        model.addAttribute("carpools", allCarpool);
        return "/car/carList";
     }
 
@@ -31,10 +39,24 @@ public class CarpoolController {
         if (controllerUtils.verifyUserSession(session)) {
             return "redirect:/login";
         }
-        User user = (User) session.getAttribute("user");
-        carpool.setUser(user);
-        carpoolService.saveCarpool(carpool);
+        Long userId = (Long) session.getAttribute("userId");
+        carpoolService.saveCarpool(carpool, userId);
         return "redirect:/carpools";
+    }
+
+    @PostMapping("/requestCarpool")
+    @ResponseBody
+    public Map<String, String> requestCarpool(@RequestBody Map<String, Object> payload, HttpSession session) {
+        Long carpoolId = Long.parseLong(payload.get("carpoolId").toString());
+        Long userId = (Long) session.getAttribute("userId");
+
+        bookingService.saveBooking(carpoolId, userId);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "카풀 신청이 완료되었습니다!");
+
+        return response;
+        // 처리 로직 (예: DB 저장)
     }
 
 //    @GetMapping("/{id}")
