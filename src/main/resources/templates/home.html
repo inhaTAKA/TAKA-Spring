@@ -8,6 +8,52 @@
     <link rel="stylesheet" href="/css/bodyHeader.css">
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/popUp.css"> <!-- popup.css 연결 -->
+    <style>
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff; /* 흰색 텍스트 */
+        }
+
+        /* 검은색 반투명 박스 */
+        .hero-content .overlay-box {
+            background-color: rgba(0, 0, 0, 0.7); /* 검은색 반투명 */
+            padding: 80px 500px; /* 상자 내부 여백 */
+            border-radius: 15px;
+            max-width: 600px; /* 최대 너비 설정 */
+            width: 90%; /* 화면 크기에 따라 유동적으로 조정 */
+            display: flex; /* 플렉스 박스로 텍스트 정렬 */
+            flex-direction: column; /* 텍스트를 세로로 배치 */
+            align-items: center; /* 텍스트를 가로 중앙 정렬 */
+            white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+            overflow: hidden; /* 텍스트 오버플로 방지 */
+            text-overflow: ellipsis; /* 내용이 너무 길 경우 말줄임표 */
+
+        }
+
+        .placeholder-text {
+            font-size: 1.8rem; /* 메인 텍스트 크기 */
+            font-weight: bold;
+            margin-bottom: 15px; /* 텍스트 간 간격 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+            background-color: transparent; /* 텍스트 뒤 배경 제거 */
+            margin-left: -250px; /* 텍스트를 왼쪽으로 20px 이동 */
+            padding: 0; /* 불필요한 내부 여백 제거 */
+        }
+
+        .placeholder-text.small {
+            font-size: 1.2rem; /* 보조 텍스트 크기 */
+            line-height: 1.6; /* 줄 간격 조정 */
+            margin-bottom: 10px; /* 텍스트 간격 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+            background-color: transparent; /* 텍스트 뒤 배경 제거 */
+            margin-left: -250px; /* 텍스트를 왼쪽으로 20px 이동 */
+            padding: 0; /* 불필요한 내부 여백 제거 */
+        }
+    </style>
 </head>
 <body>
 <!-- Header and Navbar -->
@@ -16,17 +62,14 @@
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="hero-content">
-        <div class="placeholder-text">Placeholder Text</div>
-        <div class="placeholder-text small">Small Placeholder Text</div>
-        <div class="placeholder-text small">Another Small Placeholder Text</div>
-        <div class="btn-group">
-            <button class="btn btn-dark">Button</button>
-            <button class="btn btn-dark">Button</button>
-            <button class="btn btn-success">Button</button>
+        <!-- 검은색 박스 안에 텍스트 -->
+        <div class="overlay-box">
+            <div class="placeholder-text">혼자 타지 말고 함께 가세요, 더 경제적으로!</div>
+            <div class="placeholder-text small">지금 시작하세요! 카풀 등록은 무료입니다.</div>
+            <div class="placeholder-text small">경로를 추가하여 더 많은 인하대 학생과 연결되세요.</div>
         </div>
     </div>
 </section>
-
 
 <!-- Cards Section -->
 <section class="cards-section">

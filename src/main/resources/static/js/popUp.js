@@ -1,9 +1,31 @@
-// "내 차에 태우기" 카드 클릭 시 팝업 열기
-document.getElementById("driveCard").addEventListener("click", function() {
+document.getElementById("driveCard").addEventListener("click", function () {
     const drivePopupOverlay = document.getElementById("drivePopup");
-    drivePopupOverlay.style.display = "block"; // 팝업 표시
-    setTimeout(() => drivePopupOverlay.classList.add("show"), 10); // 애니메이션 클래스 추가
+
+    // 팝업 표시
+    drivePopupOverlay.style.display = "block";
+    setTimeout(() => drivePopupOverlay.classList.add("show"), 10);
+
+    // 드롭다운 초기화
+    const sidoSelect = document.getElementById("sido");
+    const sigunguSelect = document.getElementById("sigungu");
+    const transitSidos = ["transitSido", "transitSido2", "transitSido3"];
+
+    // 출발 지역 초기화
+    sidoSelect.value = ""; // "목적지의 시/도를 선택하세요" 기본값으로 설정
+    sigunguSelect.innerHTML = '<option value="" disabled selected>시/군/구를 선택하세요</option>';
+    sigunguSelect.disabled = true;
+
+    // 경유 지역 초기화
+    transitSidos.forEach(id => {
+        const transitSido = document.getElementById(id);
+        const transitSigungu = document.getElementById(id.replace("Sido", "Sigungu"));
+
+        transitSido.value = ""; // "시/도를 선택하세요" 기본값으로 설정
+        transitSigungu.innerHTML = '<option value="" disabled selected>시/군/구를 선택하세요</option>';
+        transitSigungu.disabled = true;
+    });
 });
+
 
 // "내 차에 태우기" 팝업 닫기
 document.getElementById("closeDrivePopup").addEventListener("click", function() {
@@ -98,4 +120,20 @@ function updateTransitSigungu(sidoId, sigunguId) {
             sigunguSelect.appendChild(option);
         });
     }
+
+    document.getElementById("driveCard").addEventListener("click", function() {
+        const drivePopupOverlay = document.getElementById("drivePopup");
+
+        // 팝업 표시
+        drivePopupOverlay.style.display = "block";
+        setTimeout(() => drivePopupOverlay.classList.add("show"), 10);
+
+        // 드롭다운 초기화
+        const sidoSelect = document.getElementById("sido");
+        const sigunguSelect = document.getElementById("sigungu");
+        sidoSelect.value = ""; // 시/도를 선택하세요 기본값으로 초기화
+        sigunguSelect.innerHTML = '<option value="" disabled selected>시/군/구를 선택하세요</option>'; // 초기값
+        sigunguSelect.disabled = true; // 선택 비활성화
+    });
+
 }
