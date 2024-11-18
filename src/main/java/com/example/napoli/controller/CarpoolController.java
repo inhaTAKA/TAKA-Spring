@@ -4,16 +4,13 @@ import com.example.napoli.domain.entity.Booking;
 import com.example.napoli.domain.entity.Carpool;
 import com.example.napoli.service.BookingService;
 import com.example.napoli.service.Carpool.CarpoolService;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import jakarta.servlet.http.HttpSession;
+
+import java.util.*;
 
 @Controller
 @RequestMapping("/carpools")
@@ -23,6 +20,20 @@ public class CarpoolController {
     private final CarpoolService carpoolService;
     private final BookingService bookingService;
     private final ControllerUtils controllerUtils = new ControllerUtils();
+
+    @GetMapping
+    public String GetCarpoolSearchResults(@ModelAttribute Carpool carpool, Model model, HttpSession session)
+    {
+        if (controllerUtils.verifyUserSession(session)) {
+            return "redirect:/login";
+        }
+
+        List<Carpool> searchResults = carpoolService.searchCarpool(carpool);
+
+        model.addAttribute("carpools", searchResults);
+
+        return "/car/carList";
+    }
 
     @GetMapping
     public String getAllCarpools(Model model, HttpSession session) {

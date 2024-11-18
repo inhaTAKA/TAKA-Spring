@@ -1,20 +1,10 @@
 package com.example.napoli.domain.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import java.util.List;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,6 +23,8 @@ public class Carpool {
     @OneToMany(mappedBy = "carpool", cascade = CascadeType.ALL)
     private List<Booking> booking;
 
+    private String startLocation;
+    private String endLocation;
     private String firstStartAddress;
     private String secondStartAddress;
     private String detailedAddress;
