@@ -26,14 +26,13 @@
     <section class="content">
         <h2>받은 카풀 신청</h2>
         <div class="request-list">
-            <div th:each="booking : ${bookings}">
-                <div class="request-card">
-                    <span th:text="${booking.getUser().getUsername()}"></span>
-                    <span th:text="${booking.getBookingTime()}"></span>
-                </div>
-                <!-- '문의하기' 버튼을 request-list 바로 아래에 배치 -->
+            <div class="request-card" th:each="booking : ${bookings}">
+                <span th:text="${booking.getUser().getUsername()}"></span>
+                <span th:text="${booking.getBookingTime()}"></span>
                 <div class="actions-container">
-                    <form th:action="@{/carpoolRequest/{bookingId}/accept(bookingId=${booking.getBookingId()})}" method="post">
+                    <form th:action="@{/carpoolRequest/{bookingId}/{carpoolId}/accept
+                    (bookingId=${booking.getBookingId()}, carpoolId=${booking.getCarpool().getCarpoolId()})}"
+                          method="post">
                         <button class="action-button accept">수락하기</button>
                     </form>
                     <form th:action="@{/carpoolRequest/{bookingId}/reject(bookingId=${booking.getBookingId()})}"

@@ -5,10 +5,10 @@ import com.example.napoli.domain.entity.Booking;
 import com.example.napoli.domain.entity.Carpool;
 import com.example.napoli.domain.entity.User;
 import com.example.napoli.service.BookingService;
+import com.example.napoli.service.Carpool.CarpoolService;
 import com.example.napoli.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -19,13 +19,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class UserController {
 
     private final UserService userService;
     private final BookingService bookingService;
+    private final CarpoolService carpoolService;
 
     @GetMapping("/login")
     public String login(Model model) {
@@ -84,13 +85,13 @@ public class UserController {
         return "/user/myPage";
     }
 
-    @PostMapping("/carpoolRequest/{bookingId}/accept")
-    public String carpoolRequestAccept(@PathVariable("bookingId") Long bookingId) {
+    @PostMapping("/carpoolRequest/{bookingId}/{carpoolId}/accept")
+    public String carpoolRequestAccept(@PathVariable("bookingId") Long bookingId, @PathVariable("carpoolId") Long carpoolId) {
+        Carpool carpool = carpoolService.findCarpoolById(carpoolId);
+        carpool.setRestSeat(carpool.getRestSeat() - 1);
+
         Booking booking = bookingService.findBookingById(bookingId);
         booking.setRequestStatus(true);
-
-        Carpool carpool = booking.getCarpool();
-        carpool.setRestSeat(carpool.getRestSeat() - 1);
 
         return "redirect:/myCarpoolRequest";
     }

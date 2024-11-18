@@ -13,13 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class BookingService {
 
     private final BookingRepository bookingRepository;
     private final CarpoolRepository carpoolRepository;
     private final UserRepository userRepository;
 
+    @Transactional
     public void saveBooking(Long carpoolId, Long requestUserId) {
         Carpool carpool = carpoolRepository.findById(carpoolId).orElse(null);
         User user = userRepository.findById(requestUserId).orElse(null);
@@ -37,6 +38,4 @@ public class BookingService {
     public Booking findBookingById(Long bookingId) {
         return bookingRepository.findById(bookingId).orElse(null);
     }
-
-
 }

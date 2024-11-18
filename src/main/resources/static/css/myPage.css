@@ -85,6 +85,7 @@ main {
 }
 
 .content .request-card {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -92,6 +93,7 @@ main {
     border-radius: 10px;
     padding: 15px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 }
 
 .actions-container {

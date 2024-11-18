@@ -68,8 +68,8 @@ public class CarpoolController {
         return "redirect:/carpools";
     }
 
-    @PostMapping("/requestCarpool")
     @ResponseBody
+    @PostMapping("/requestCarpool")
     public Map<String, String> requestCarpool(@RequestBody Map<String, Object> payload, HttpSession session) {
         Long carpoolId = Long.parseLong(payload.get("carpoolId").toString());
         Long requestUserId = (Long) session.getAttribute("userId");
@@ -81,38 +81,4 @@ public class CarpoolController {
 
         return response;
     }
-
-//    @GetMapping("/{id}")
-//    public ResponseEntity<CarpoolResponseDTO> getCarpoolById(@PathVariable Long id) {
-//        CarpoolResponseDTO carpool = carpoolService.getCarpoolById(id);
-//        if (carpool != null) {
-//            return new ResponseEntity<>(carpool, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<CarpoolResponseDTO> updateCarpool(@PathVariable Long id, @RequestBody CarpoolUpdateDTO carpoolDTO) {
-//        CarpoolResponseDTO updatedCarpool = carpoolService.updateCarpool(id, carpoolDTO);
-//        if (updatedCarpool != null) {
-//            return new ResponseEntity<>(updatedCarpool, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-
-//    }
-
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deleteCarpool(@PathVariable Long id) {
-//        // 카풀 삭제 서비스 호출
-//        boolean isDeleted = carpoolService.deleteCarpool(id);
-//        if (isDeleted) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-
-//    }
-
 }
