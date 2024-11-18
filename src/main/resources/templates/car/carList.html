@@ -47,14 +47,14 @@
                 <p><strong>운전자 성별: </strong><span th:text="${carpool.getSex()}"></span></p>
                 <p><strong>소개:</strong> 편안하게 모시겠습니다~</p>
             </div>
-            <div class="current-people">현재인원: 2/4</div>
+            <div class="current-people">남은 좌석: <span th:text="${carpool.getRestSeat()}"></span></div>
             <div class="gender-icon male"></div>
             <div class="actions-container">
                 <button class="action-button apply"
                         th:attr="disabled=${isApplieds[iterStat.index] || isMyCarpool[iterStat.index]}"
                         th:classappend="${isApplieds[iterStat.index] || isMyCarpool[iterStat.index] ? 'disabled' : ''}"
                         onclick="applyCarpool(this)">
-                    <span th:text="${isMyCarpool[iterStat.index] ? '내가 올린 카풀' : (isApplieds[iterStat.index] ? '✅신청완료' : '신청하기')}"></span>
+                        <span th:text="${isMyCarpool[iterStat.index] ? '내가 올린 카풀' : (isApplieds[iterStat.index] ? '✅신청완료' : '신청하기')}"></span>
                 </button>
                 <button class="action-button inquire">문의하기</button>
             </div>

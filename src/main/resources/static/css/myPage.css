@@ -81,6 +81,7 @@ main {
     gap: 10px;
     width: 100%; /* 리스트의 가로 크기를 제한하려면 원하는 값으로 변경 */
     max-width: 400px; /* 리스트 최대 너비 */
+    position: relative; /* 버튼을 절대 위치로 배치하려면 부모에 relative 추가 */
 }
 
 .content .request-card {
@@ -91,4 +92,33 @@ main {
     border-radius: 10px;
     padding: 15px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.actions-container {
+    position: absolute;
+    bottom: -25px;  /* request-card 바로 아래로 설정 */
+    right: 0;  /* 오른쪽에 배치 */
+    display: flex;
+    gap: 10px;
+}
+
+.action-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.action-button.accept {
+    background: linear-gradient(45deg, #2196f3, #64b5f6);
+    color: white;
+}
+
+.action-button.reject {
+    background: linear-gradient(45deg, #f32159, #f6649c);
+    color: white;
 }

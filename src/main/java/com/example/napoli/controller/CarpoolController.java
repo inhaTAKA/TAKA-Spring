@@ -72,15 +72,14 @@ public class CarpoolController {
     @ResponseBody
     public Map<String, String> requestCarpool(@RequestBody Map<String, Object> payload, HttpSession session) {
         Long carpoolId = Long.parseLong(payload.get("carpoolId").toString());
-        Long userId = (Long) session.getAttribute("userId");
+        Long requestUserId = (Long) session.getAttribute("userId");
 
-        bookingService.saveBooking(carpoolId, userId);
+        bookingService.saveBooking(carpoolId, requestUserId);
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "카풀 신청이 완료되었습니다!");
 
         return response;
-        // 처리 로직 (예: DB 저장)
     }
 
 //    @GetMapping("/{id}")

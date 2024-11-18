@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page</title>
     <link rel="stylesheet" href="/css/bodyHeader.css">
-    <link rel="stylesheet" href="/css/myCarpool.css">
+    <link rel="stylesheet" href="/css/myPage.css">
 </head>
 <body>
 <div th:replace="~{fragments/bodyheader :: bodyHeader}"></div>
@@ -26,10 +26,20 @@
     <section class="content">
         <h2>받은 카풀 신청</h2>
         <div class="request-list">
-            <div th:each="carpool : ${carpools}">
-                <div class="request-card" th:each="booking : ${carpool.getBooking()}">
+            <div th:each="booking : ${bookings}">
+                <div class="request-card">
                     <span th:text="${booking.getUser().getUsername()}"></span>
                     <span th:text="${booking.getBookingTime()}"></span>
+                </div>
+                <!-- '문의하기' 버튼을 request-list 바로 아래에 배치 -->
+                <div class="actions-container">
+                    <form th:action="@{/carpoolRequest/{bookingId}/accept(bookingId=${booking.getBookingId()})}" method="post">
+                        <button class="action-button accept">수락하기</button>
+                    </form>
+                    <form th:action="@{/carpoolRequest/{bookingId}/reject(bookingId=${booking.getBookingId()})}"
+                          method="post">
+                        <button class="action-button reject">거절하기</button>
+                    </form>
                 </div>
             </div>
         </div>

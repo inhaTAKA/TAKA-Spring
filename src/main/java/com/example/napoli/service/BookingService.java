@@ -7,29 +7,36 @@ import com.example.napoli.domain.repository.BookingRepository;
 import com.example.napoli.domain.repository.CarpoolRepository;
 import com.example.napoli.domain.repository.UserRepository;
 import java.time.LocalDate;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BookingService {
 
     private final BookingRepository bookingRepository;
     private final CarpoolRepository carpoolRepository;
     private final UserRepository userRepository;
 
-    public void saveBooking(Long carpoolId, Long userId) {
+    public void saveBooking(Long carpoolId, Long requestUserId) {
         Carpool carpool = carpoolRepository.findById(carpoolId).orElse(null);
-        User user = userRepository.findById(userId).orElse(null);
+        User user = userRepository.findById(requestUserId).orElse(null);
 
         Booking booking = Booking.builder()
                 .user(user)
                 .carpool(carpool)
                 .bookingTime(LocalDate.now())
-                .approvalStatus(false)
+                .requestStatus(false)
                 .build();
 
         bookingRepository.save(booking);
     }
+
+    public Booking findBookingById(Long bookingId) {
+        return bookingRepository.findById(bookingId).orElse(null);
+    }
+
+
 }

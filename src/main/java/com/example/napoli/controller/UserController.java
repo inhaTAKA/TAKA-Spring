@@ -4,15 +4,18 @@ import com.example.napoli.domain.dto.UserSignUpRequest;
 import com.example.napoli.domain.entity.Booking;
 import com.example.napoli.domain.entity.Carpool;
 import com.example.napoli.domain.entity.User;
+import com.example.napoli.service.BookingService;
 import com.example.napoli.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,11 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 
     private final UserService userService;
+    private final BookingService bookingService;
 
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("user", UserSignUpRequest.empty());
-        return "/member/login";
+        return "/user/login";
     }
 
     @PostMapping("/register")
@@ -64,12 +68,30 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/myCarpool")
+    @GetMapping("/myCarpoolRequest")
     public String myCarpool(HttpSession session, Model model) {
         User user = userService.findByUserId((Long) session.getAttribute("userId"));
-        List<Carpool> carPools = user.getCarPools();
-        model.addAttribute("carpools", carPools);
+        List<Carpool> userCarPools = user.getCarPools();
+        if (userCarPools.isEmpty()) {
+            return "/user/myPage";
+        }
+        List<Booking> filterBookings = userCarPools.stream()
+                .flatMap(carpool -> carpool.getBooking().stream()
+                        .filter(booking -> !booking.getRequestStatus()))
+                        .toList();
 
-        return "/member/myCarpool";
+        model.addAttribute("bookings", filterBookings);
+        return "/user/myPage";
+    }
+
+    @PostMapping("/carpoolRequest/{bookingId}/accept")
+    public String carpoolRequestAccept(@PathVariable("bookingId") Long bookingId) {
+        Booking booking = bookingService.findBookingById(bookingId);
+        booking.setRequestStatus(true);
+
+        Carpool carpool = booking.getCarpool();
+        carpool.setRestSeat(carpool.getRestSeat() - 1);
+
+        return "redirect:/myCarpoolRequest";
     }
 }

@@ -16,5 +16,6 @@ public class RegisterCarpoolDto {
     String secondTransitAddress3;
     int minDesiredCharge;
     int maxDesiredCharge;
+    Integer restSeat;
     String sex;
 }
