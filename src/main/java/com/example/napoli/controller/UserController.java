@@ -87,12 +87,7 @@ public class UserController {
 
     @PostMapping("/carpoolRequest/{bookingId}/{carpoolId}/accept")
     public String carpoolRequestAccept(@PathVariable("bookingId") Long bookingId, @PathVariable("carpoolId") Long carpoolId) {
-        Carpool carpool = carpoolService.findCarpoolById(carpoolId);
-        carpool.setRestSeat(carpool.getRestSeat() - 1);
-
-        Booking booking = bookingService.findBookingById(bookingId);
-        booking.setRequestStatus(true);
-
+        userService.acceptCarpoolRequest(carpoolId, bookingId);
         return "redirect:/myCarpoolRequest";
     }
 }
