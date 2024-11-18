@@ -30,7 +30,10 @@ public class CarpoolController {
 
         List<Carpool> searchResults = carpoolService.searchCarpool(carpool);
 
-        model.addAttribute("carpools", searchResults);
+        if (searchResults != null)
+        {
+            model.addAttribute("carpools", searchResults);
+        }
 
         return "/car/carList";
     }
