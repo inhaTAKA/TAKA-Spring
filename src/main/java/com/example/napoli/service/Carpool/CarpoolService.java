@@ -43,13 +43,8 @@ public class CarpoolService {
     }
 
     public List<Carpool> searchCarpool(Carpool carpool) {
-        return carpoolRepository.findByStartLocationContainingAndEndLocationContainingAndMinDesiredChargeGreaterThanEqualAndMaxDesiredChargeLessThanEqualAndSex(
-                carpool.getStartLocation(),
-                carpool.getEndLocation(),
-                carpool.getMinDesiredCharge(),
-                carpool.getMaxDesiredCharge(),
-                carpool.getSex()
-        );
+        return carpoolRepository.searchCarpool(carpool.getFirstStartAddress(),
+                carpool.getFirstArriveAddress(), carpool.getMinDesiredCharge(), carpool.getMaxDesiredCharge(),
+                carpool.getSex());
     }
-
 }

@@ -23,11 +23,11 @@ public class Carpool {
     @OneToMany(mappedBy = "carpool", cascade = CascadeType.ALL)
     private List<Booking> booking;
 
-    private String startLocation;
-    private String endLocation;
     private String firstStartAddress;
     private String secondStartAddress;
     private String detailedAddress;
+    private String firstArriveAddress;
+    private String secondArriveAddress;
     private String firstTransitAddress1;
     private String firstTransitAddress2;
     private String firstTransitAddress3;
