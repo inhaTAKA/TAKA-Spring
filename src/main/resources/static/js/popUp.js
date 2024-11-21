@@ -6,14 +6,21 @@ document.getElementById("driveCard").addEventListener("click", function () {
     setTimeout(() => drivePopupOverlay.classList.add("show"), 10);
 
     // 드롭다운 초기화
-    const sidoSelect = document.getElementById("sido");
-    const sigunguSelect = document.getElementById("sigungu");
+    const startSidoSelect = document.getElementById("startsido");
+    const startSigunguSelect = document.getElementById("startsigungu");
     const transitSidos = ["transitSido", "transitSido2", "transitSido3"];
 
     // 출발 지역 초기화
-    sidoSelect.value = ""; // "목적지의 시/도를 선택하세요" 기본값으로 설정
-    sigunguSelect.innerHTML = '<option value="" disabled selected>시/군/구를 선택하세요</option>';
-    sigunguSelect.disabled = true;
+    startSidoSelect.value = ""; // "목적지의 시/도를 선택하세요" 기본값으로 설정
+    startSigunguSelect.innerHTML = '<option value="" disabled selected>시/군/구를 선택하세요</option>';
+    startSigunguSelect.disabled = true;
+
+    // 도착 지역 초기화
+    const arriveSidoSelect = document.getElementById("arrivesido");
+    const arriveSigunguSelect = document.getElementById("arrivesigungu");
+    arriveSidoSelect.value = ""; // "목적지의 시/도를 선택하세요" 기본값으로 설정
+    arriveSigunguSelect.innerHTML = '<option value="" disabled selected>시/군/구를 선택하세요</option>';
+    arriveSigunguSelect.disabled = true;
 
     // 경유 지역 초기화
     transitSidos.forEach(id => {
@@ -86,9 +93,8 @@ const regions = {
     // 추가 시도 및 시군구 목록
 };
 
-function updateSigungu() {
-    const sidoSelect = document.getElementById("sido");
-    const sigunguSelect = document.getElementById("sigungu");
+function updateSigungu(sidoSelect, sigunguId) {
+    const sigunguSelect = document.getElementById(sigunguId);
     const selectedSido = sidoSelect.value;
 
     sigunguSelect.innerHTML = '<option value="" disabled selected>시/군/구를 선택하세요</option>';

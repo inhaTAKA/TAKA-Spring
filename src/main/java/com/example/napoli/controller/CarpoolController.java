@@ -27,7 +27,6 @@ public class CarpoolController {
             return "redirect:/login";
         }
 
-        carpool.setFirstArriveAddress("경기도");;
         List<Carpool> searchResults = carpoolService.searchCarpool(carpool);
 
         if (searchResults != null) {
@@ -77,7 +76,6 @@ public class CarpoolController {
             return "redirect:/login";
         }
         Long userId = (Long) session.getAttribute("userId");
-        carpool.setFirstArriveAddress("경기도");
         carpoolService.saveCarpool(carpool, userId);
         return "redirect:/carpools";
     }

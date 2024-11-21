@@ -8,6 +8,7 @@ import java.time.LocalDate;
 public record UserSignUpRequest(
         String username,
         String password,
+        String name,
         String gender,
         //얘는 지워야하는데 지우면 에러가 뜸
         String email,
@@ -16,13 +17,14 @@ public record UserSignUpRequest(
 
     public static UserSignUpRequest empty() {
         //얘도 confrimPassword지워지면 같이 수정필요할듯
-        return new UserSignUpRequest(null, null, null, null, null);
+        return new UserSignUpRequest(null, null, null, null, null, null);
     }
 
     public User toEntity() {
         return User.builder()
                 .username(username)
                 .password(password)
+                .name(name)
                 .gender(gender)
                 .email(email)
                 .createdAt(LocalDate.now())

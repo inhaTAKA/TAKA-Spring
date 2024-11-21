@@ -7,13 +7,16 @@ import lombok.Setter;
 public class RegisterCarpoolDto {
     String firstStartAddress;
     String secondStartAddress;
-    String detailedAddress;
+    String detailedStartAddress;
     String firstTransitAddress1;
     String firstTransitAddress2;
     String firstTransitAddress3;
     String secondTransitAddress1;
     String secondTransitAddress2;
     String secondTransitAddress3;
+    String firstArriveAddress;
+    String secondArriveAddress;
+    String detailedArriveAddress;
     int minDesiredCharge;
     int maxDesiredCharge;
     Integer restSeat;

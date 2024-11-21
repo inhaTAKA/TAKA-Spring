@@ -18,11 +18,14 @@ public class User {
     @Column(name = "USER_ID")
     private Long userId;
 
-    @Column(name = "name")
+    @Column(name = "USERNAME")
     private String username;
 
     @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "NAME")
+    private String name;
 
     @Column(name = "PHONE")
     private String phone;

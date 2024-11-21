@@ -14,7 +14,7 @@
         <div class="arrow"></div>
         <div class="form-elements">
             <div class="form-element">
-                <input type="text" id="username" th:field="*{username}" placeholder="Username">
+                <input type="text" id="username" th:field="*{username}" placeholder="ID">
             </div>
             <div class="form-element">
                 <input type="password" id="password" th:field="*{password}" placeholder="Password">
@@ -22,6 +22,10 @@
             <div class="form-element">
                 <input type="password" id="confirmPassword" th:field="*{confirmPassword}"
                        placeholder="Confirm password">
+            </div>
+            <div class="form-element">
+                <input type="text" id="name" th:field="*{name}"
+                placeholder="Name">
             </div>
             <div class="form-element">
                 <button type="submit" id="submit-btn">Sign Up</button>

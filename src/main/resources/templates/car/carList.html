@@ -41,6 +41,9 @@
                 <p><strong>경유가능지역: </strong><span
                         th:text="${carpool.getFirstTransitAddress3() + ' ' + carpool.getSecondTransitAddress3()}"></span>
                 </p>
+                <p><strong>도착지역: </strong><span
+                        th:text="${carpool.getFirstArriveAddress() + ' ' + carpool.getSecondArriveAddress()}"></span>
+                </p>
                 <p><strong>희망카풀비용: </strong><span
                         th:text="${carpool.getMinDesiredCharge() + ' ~ ' + carpool.getMaxDesiredCharge()}"></span>
                 </p>
