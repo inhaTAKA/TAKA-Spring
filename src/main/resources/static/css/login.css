@@ -84,13 +84,25 @@ body {
     left:calc(calc(calc(100% / 3) * 2) + calc(calc(100% / 3) / 3)) ;
 }
 
-.form.signin .form-elements > div:nth-child(3) {
+.form.signin .form-elements > div:nth-child(3),
+.form.signin .form-elements > div:nth-child(4),
+.form.signin .form-elements > div:nth-child(5){
     height:0px;
     opacity:0;
 }
-.form.reset .form-elements > div:nth-child(2),
-.form.reset .form-elements > div:nth-child(3) {
+.form.reset .form-elements > div:nth-child(4),
+.form.reset .form-elements > div:nth-child(5) {
     height:0px;
     opacity:0;
 }
 
+.form .form-elements select {
+    width: 100%; /* input과 동일한 너비 */
+    padding: 10px; /* input과 동일한 패딩 */
+    font-size: 16px; /* input과 동일한 폰트 크기 */
+    margin: 5px 0px; /* input과 동일한 간격 */
+    border-radius: 10px; /* input과 동일한 둥근 모서리 */
+    box-sizing: border-box; /* 박스 크기 조정 */
+    border: 1px solid #222; /* input과 동일한 테두리 */
+    background: #f5f5f5; /* input과 동일한 배경색 */
+}

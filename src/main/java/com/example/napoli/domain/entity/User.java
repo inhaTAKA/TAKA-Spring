@@ -37,7 +37,7 @@ public class User {
     private String location;
 
     @Column(name = "GENDER")
-    private String gender;
+    private String sex;
 
     @Column(name = "CREATED_AT")
     private LocalDate createdAt;

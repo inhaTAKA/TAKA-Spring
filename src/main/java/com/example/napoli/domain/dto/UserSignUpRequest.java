@@ -9,7 +9,7 @@ public record UserSignUpRequest(
         String username,
         String password,
         String name,
-        String gender,
+        String sex,
         //얘는 지워야하는데 지우면 에러가 뜸
         String email,
         String confirmPassword
@@ -25,7 +25,7 @@ public record UserSignUpRequest(
                 .username(username)
                 .password(password)
                 .name(name)
-                .gender(gender)
+                .sex(sex)
                 .email(email)
                 .createdAt(LocalDate.now())
                 .build();

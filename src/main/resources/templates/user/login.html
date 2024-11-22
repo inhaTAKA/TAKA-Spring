@@ -1,9 +1,10 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang="ko">
 <head>
-    <link rel="stylesheet" href="/css/login.css"> <!-- CSS 파일 가져오기 -->
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="../../static/css/login.css"> <!-- CSS 파일 가져오기 -->
 </head>
 <body>
-<form th:action="@{/register}" th:object="${user}" method="post">
+<form th:action="@{/register}" th:object="${user}" method="post" autocomplete="off">
     <input type="hidden" id="actionType" name="actionType" value="signup">
     <div class="form signup">
         <div class="form-header">
@@ -26,6 +27,13 @@
             <div class="form-element">
                 <input type="text" id="name" th:field="*{name}"
                 placeholder="Name">
+            </div>
+            <div class="form-element">
+                <select th:field="*{sex}">
+                    <option value="" selected>성별을 선택하세요.</option>
+                    <option value="남자">남자</option>
+                    <option value="여자">여자</option>
+                </select>
             </div>
             <div class="form-element">
                 <button type="submit" id="submit-btn">Sign Up</button>
