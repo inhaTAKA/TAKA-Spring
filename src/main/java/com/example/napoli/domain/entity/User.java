@@ -36,7 +36,7 @@ public class User {
     @Column(name = "LOCATION")
     private String location;
 
-    @Column(name = "GENDER")
+    @Column(name = "SEX")
     private String sex;
 
     @Column(name = "CREATED_AT")

@@ -82,6 +82,7 @@ public class UserController {
                         .toList();
 
         model.addAttribute("bookings", filterBookings);
+        model.addAttribute("userName", user.getUsername());
         return "/user/myPage";
     }
 

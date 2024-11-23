@@ -113,6 +113,9 @@ body {
 .gender-icon.female {
     background-color: #e94e77;
 }
+.gender-icon.none {
+    background-color: #ffdd37;
+}
 .current-people {
     position: absolute;
     bottom: 15px;

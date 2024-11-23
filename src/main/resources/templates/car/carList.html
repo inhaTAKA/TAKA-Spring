@@ -47,11 +47,13 @@
                 <p><strong>희망카풀비용: </strong><span
                         th:text="${carpool.getMinDesiredCharge() + ' ~ ' + carpool.getMaxDesiredCharge()}"></span>
                 </p>
-                <p><strong>운전자 성별: </strong><span th:text="${carpool.getSex()}"></span></p>
+                <p><strong>희망하는 탑승자 성별: </strong><span th:text="${carpool.getSex()}"></span></p>
                 <p><strong>소개:</strong> 편안하게 모시겠습니다~</p>
             </div>
             <div class="current-people">남은 좌석: <span th:text="${carpool.getRestSeat()}"></span></div>
-            <div class="gender-icon male"></div>
+            <div th:if="${carpool.getUser().getSex() == null}" class="gender-icon none"></div>
+            <div th:if="${carpool.getUser().getSex() != null && carpool.getUser().getSex().equals('남자')}" class="gender-icon male"></div>
+            <div th:if="${carpool.getUser().getSex() != null && carpool.getUser().getSex().equals('여자')}" class="gender-icon female"></div>
             <div class="actions-container">
                 <button class="action-button apply"
                         th:attr="disabled=${isApplieds[iterStat.index] || isMyCarpool[iterStat.index]}"
