@@ -6,6 +6,7 @@ import com.example.napoli.service.BookingService;
 import com.example.napoli.service.Carpool.CarpoolService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -64,6 +65,7 @@ public class CarpoolController {
         Collections.reverse(allCarpool);
         Collections.reverse(isApplieds);
         Collections.reverse(isMyCarpool);
+
         model.addAttribute("carpools", allCarpool);
         model.addAttribute("isApplieds", isApplieds);
         model.addAttribute("isMyCarpool", isMyCarpool);
@@ -82,15 +84,13 @@ public class CarpoolController {
 
     @ResponseBody
     @PostMapping("/requestCarpool")
-    public Map<String, String> requestCarpool(@RequestBody Map<String, Object> payload, HttpSession session) {
-        Long carpoolId = Long.parseLong(payload.get("carpoolId").toString());
+    public ResponseEntity<?> requestCarpool(@RequestBody Map<String, Object> payload, HttpSession session) {
+        Object carpoolId1 = payload.get("carpoolId");
+        Long carpoolId = Long.parseLong(carpoolId1.toString());
         Long requestUserId = (Long) session.getAttribute("userId");
 
         bookingService.saveBooking(carpoolId, requestUserId);
 
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "카풀 신청이 완료되었습니다!");
-
-        return response;
+        return ResponseEntity.ok(Map.of("status", "success", "message", "Booking saved successfully."));
     }
 }

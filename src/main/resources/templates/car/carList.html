@@ -52,49 +52,100 @@
             </div>
             <div class="current-people">남은 좌석: <span th:text="${carpool.getRestSeat()}"></span></div>
             <div th:if="${carpool.getUser().getSex() == null}" class="gender-icon none"></div>
-            <div th:if="${carpool.getUser().getSex() != null && carpool.getUser().getSex().equals('남자')}" class="gender-icon male"></div>
-            <div th:if="${carpool.getUser().getSex() != null && carpool.getUser().getSex().equals('여자')}" class="gender-icon female"></div>
+            <div th:if="${carpool.getUser().getSex() != null && carpool.getUser().getSex().equals('남자')}"
+                 class="gender-icon male"></div>
+            <div th:if="${carpool.getUser().getSex() != null && carpool.getUser().getSex().equals('여자')}"
+                 class="gender-icon female"></div>
             <div class="actions-container">
                 <button class="action-button apply"
                         th:attr="disabled=${isApplieds[iterStat.index] || isMyCarpool[iterStat.index]}"
                         th:classappend="${isApplieds[iterStat.index] || isMyCarpool[iterStat.index] ? 'disabled' : ''}"
-                        onclick="applyCarpool(this)">
-                        <span th:text="${isMyCarpool[iterStat.index] ? '내가 올린 카풀' : (isApplieds[iterStat.index] ? '✅신청완료' : '신청하기')}"></span>
+                        onclick="openModal(this)">
+                    <span th:text="${isMyCarpool[iterStat.index] ? '내가 올린 카풀' : (isApplieds[iterStat.index] ? '✅신청완료' : '신청하기')}"></span>
                 </button>
                 <button class="action-button inquire">문의하기</button>
             </div>
         </div>
     </div>
 </div>
-<script>
-    function applyCarpool(button) {
-        // 현재 버튼이 속한 카풀 ID 가져오기
-        const carpoolId = button.closest('.info-container').querySelector('.carpool-id').value;
 
-        // AJAX 요청
-        fetch('/carpools/requestCarpool', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({carpoolId: carpoolId}),
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // 응답 데이터 처리
-                alert(data.message); // 성공 메시지 출력
-                button.disabled = true; // 버튼 비활성화
-                button.textContent = '✅신청완료'; // 버튼 텍스트 변경
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('신청에 실패했습니다. 다시 시도해주세요.');
+<!-- 모달 창 구조 추가 -->
+<div id="applyModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>상세 정보 입력</h2>
+        <form id="applyForm">
+            <label for="phone">전화번호:</label>
+            <input type="text" id="phone" name="phone" required>
+            <label for="pickupLocation">픽업 요청 지역:</label>
+            <input type="text" id="pickupLocation" name="pickupLocation" required>
+            <label for="message">메시지:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">신청하기</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openModal(button) {
+        const carpoolId = button.closest('.info-container').querySelector('.carpool-id').value;
+        document.getElementById('applyModal').style.display = 'block';
+        document.getElementById('applyForm').dataset.carpoolId = carpoolId; // 카풀 ID를 데이터 속성에 저장
+    }
+
+    function closeModal() {
+        document.getElementById('applyModal').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+        if (event.target === document.getElementById('applyModal')) {
+            closeModal();
+        }
+    }
+
+    document.querySelector('.close').addEventListener('click', function () {
+        closeModal();
+    });
+
+    document.getElementById('applyForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const carpoolId = event.target.dataset.carpoolId; // 저장된 카풀 ID 가져오기
+        const pickupLocation = document.getElementById('pickupLocation').value; // 픽업 요청 지역 가져오기
+        applyCarpool(carpoolId, pickupLocation);
+        closeModal();
+        const button = document.querySelector(`.carpool-id[value="${carpoolId}"]`).closest('.info-container').querySelector('.action-button.apply');
+        button.disabled = true;
+        button.textContent = '✅신청완료';
+    });
+
+    async function applyCarpool(carpoolId, pickupLocation) {
+        try {
+            const response = await fetch('/carpools/requestCarpool', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ carpoolId: carpoolId, pickupLocation: pickupLocation }),
             });
+
+            const data = await response.json();
+            console.log('Success:', data);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+
+            }
+
+            const button = document.querySelector(`.carpool-id[value="${carpoolId}"]`)
+                .closest('.info-container')
+                .querySelector('.action-button.apply');
+            button.disabled = true;
+            button.textContent = '✅신청완료';
+
+            alert("신청이 완료되었습니다.");
+        } catch (error) {
+            console.error('Error:', error);
+            alert('신청에 실패했습니다. 다시 시도해주세요.');
+        }
     }
 </script>
 </body>

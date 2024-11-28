@@ -15,14 +15,14 @@ main {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center; /* 가로 중앙 정렬 */
-    justify-content: center; /* 세로 중앙 정렬 */
+    align-items: center;
+    justify-content: center;
     box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar .profile {
     text-align: center;
-    margin-bottom: 30px; /* 프로필과 메뉴 간 간격 */
+    margin-bottom: 30px;
 }
 
 .sidebar .profile img {
@@ -36,24 +36,24 @@ main {
     list-style: none;
     padding: 0;
     margin: 0;
-    text-align: center; /* 텍스트 중앙 정렬 */
+    text-align: center;
 }
 
 .sidebar .menu li {
-    margin: 10px 0; /* 메뉴 간격 */
+    margin: 10px 0;
 }
 
 .sidebar .menu li a {
-    display: inline-block; /* 텍스트를 중앙에 정렬하려면 inline-block 사용 */
+    display: inline-block;
     text-decoration: none;
     color: #333;
     padding: 10px 0;
-    width: 100%; /* 메뉴 항목 가로로 꽉 채우기 */
-    text-align: center; /* 텍스트 가운데 정렬 */
+    width: 100%;
+    text-align: center;
 }
 
 .sidebar .menu li a:hover {
-    background-color: #e0e0e0; /* 호버 시 배경색 */
+    background-color: #e0e0e0;
 }
 
 .sidebar .menu li a.danger {
@@ -64,14 +64,14 @@ main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center; /* 가로 중앙 정렬 */
-    justify-content: center; /* 세로 중앙 정렬 */
-    padding: 0; /* 내부 여백 제거 */
+    align-items: center;
+    justify-content: center;
+    padding: 0;
     background-color: #FFFFFF;
 }
 
 .content h2 {
-    margin: 0 0 20px 0; /* 제목 아래 간격 */
+    margin: 0 0 20px 0;
     text-align: center;
 }
 
@@ -79,29 +79,52 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%; /* 리스트의 가로 크기를 제한하려면 원하는 값으로 변경 */
-    max-width: 400px; /* 리스트 최대 너비 */
-    position: relative; /* 버튼을 절대 위치로 배치하려면 부모에 relative 추가 */
+    width: 100%;
+    max-width: 400px;
+    position: relative;
 }
 
 .content .request-card {
     position: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     background-color: #D7F2D7;
     border-radius: 10px;
-    padding: 15px 20px;
+    padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+    margin-bottom: 30px; /* 카드 간의 간격 조정 */
+}
+
+.request-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.info-item {
+    font-size: 16px;
+}
+
+.info-value {
+    font-weight: bold;
+}
+
+.request-date {
+    position: absolute;
+    top: 0; /* 상단으로 위치 조정 */
+    right: 0; /* 우측으로 위치 조정 */
+    font-size: 14px;
+    color: #555;
 }
 
 .actions-container {
-    position: absolute;
-    bottom: -25px;  /* request-card 바로 아래로 설정 */
-    right: 0;  /* 오른쪽에 배치 */
     display: flex;
+    justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
     gap: 10px;
+    position: absolute; /* 절대 위치 */
+    bottom: -20px; /* 박스에 반쯤 걸치도록 위치 조정 */
+    right: 10px;
 }
 
 .action-button {

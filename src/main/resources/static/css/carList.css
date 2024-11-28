@@ -175,3 +175,59 @@ body {
     color: #666666; /* 어두운 글자색 */
     cursor: not-allowed; /* 커서 모양 변경 */
 }
+
+/* 모달 창 스타일 */
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* 모달 창 스타일 */
+.modal-content {
+    background-color: #2196f3; /* 파란색 배경 */
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 요소 간 간격 추가 */
+}
+
+.modal-content label,
+.modal-content input,
+.modal-content textarea,
+.modal-content button {
+    width: 100%; /* 너비를 100%로 설정 */
+    display: block; /* 블록 레벨 요소로 설정 */
+    margin-bottom: 10px; /* 아래쪽 여백 추가 */
+}
+
+.modal-content button {
+    width: auto; /* 버튼 너비 자동 설정 */
+    align-self: flex-end; /* 버튼을 오른쪽으로 정렬 */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

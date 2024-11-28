@@ -25,17 +25,17 @@
     <section class="content">
         <h2>받은 카풀 신청</h2>
         <div class="request-list">
-            <div class="request-card" th:each="booking : ${bookings}">
-                <span th:text="${booking.getUser().getUsername()}"></span>
-                <span th:text="${booking.getBookingTime()}"></span>
+            <div th:each="booking : ${bookings}" class="request-card">
+                <div class="request-info">
+                    <div class="info-item"><span class="info-value">이름:</span> <span th:text="${booking.getUser().getUsername()}"></span></div>
+                    <div class="info-item"><span class="info-value">성별:</span> <span th:text="${booking.getUser().getSex()}"></span></div>
+                    <div class="request-date">신청날짜: <span th:text="${booking.getBookingTime()}"></span></div>
+                </div>
                 <div class="actions-container">
-                    <form th:action="@{/carpoolRequest/{bookingId}/{carpoolId}/accept
-                    (bookingId=${booking.getBookingId()}, carpoolId=${booking.getCarpool().getCarpoolId()})}"
-                          method="post">
+                    <form th:action="@{/carpoolRequest/{bookingId}/{carpoolId}/accept(bookingId=${booking.getBookingId()}, carpoolId=${booking.getCarpool().getCarpoolId()})}" method="post">
                         <button class="action-button accept">수락하기</button>
                     </form>
-                    <form th:action="@{/carpoolRequest/{bookingId}/reject(bookingId=${booking.getBookingId()})}"
-                          method="post">
+                    <form th:action="@{/carpoolRequest/{bookingId}/reject(bookingId=${booking.getBookingId()})}" method="post">
                         <button class="action-button reject">거절하기</button>
                     </form>
                 </div>
