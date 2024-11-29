@@ -22,6 +22,11 @@ public class CarpoolController {
     private final BookingService bookingService;
     private final ControllerUtils controllerUtils = new ControllerUtils();
 
+    @GetMapping("/myCarpools") // 내 카풀 목록 페이지 경로 추가
+    public String myCarpoolsPage() {
+        return "/car/myCarpools"; // 'templates/car/myCarpools.html' 반환
+    }
+
     @GetMapping("/searchCarpools")
     public String GetCarpoolSearchResults(@ModelAttribute Carpool carpool, Model model, HttpSession session) {
         if (controllerUtils.verifyUserSession(session)) {
@@ -95,4 +100,5 @@ public class CarpoolController {
 
         return ResponseEntity.ok(Map.of("status", "success", "message", "Booking saved successfully."));
     }
+
 }

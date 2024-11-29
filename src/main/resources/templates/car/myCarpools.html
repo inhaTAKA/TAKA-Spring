@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내 카풀 목록</title>
+  <link rel="stylesheet" href="/css/bodyHeader.css">
+  <link rel="stylesheet" href="/css/myPage.css">
+  <link rel="stylesheet" href="/css/popup.css"> <!-- 팝업 스타일 분리 -->
+</head>
+<body>
+<!-- 상단 바 -->
+<div th:replace="~{fragments/bodyheader :: bodyHeader}"></div>
+
+<main>
+  <!-- 사이드바 -->
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="/image/mypage_icon.png" alt="Profile">
+      <p>사용자 이름</p>
+    </div>
+    <ul class="menu">
+      <li><a href="/carpools/myCarpools" class="active">내 카풀 목록</a></li>
+      <li><a href="#">내 정보 관리</a></li>
+      <li><a href="#">비밀번호 변경</a></li>
+      <li><a href="#" class="danger">회원 탈퇴</a></li>
+    </ul>
+  </aside>
+
+  <!-- 메인 콘텐츠 -->
+  <section class="content">
+    <h2>내 카풀 목록</h2>
+    <div class="carpool-cards">
+      <!-- 단일 더미 카드 -->
+      <div class="carpool-card">
+        <div class="card-header">
+          <h3>서울 → 부산</h3>
+        </div>
+        <div class="card-body">
+          <p>출발 시간: 2024-12-01 09:00</p>
+          <p>신청자 수: 3</p>
+          <p>차량 정보: 흰색 소나타</p>
+        </div>
+        <div class="card-footer">
+          <button class="view-button" onclick="openPopup()">신청자 정보 확인</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 팝업 박스 -->
+<div class="overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <div class="popup-header">신청자 정보</div>
+  <div class="popup-body">
+    <!-- 신청자 정보 카드 -->
+    <div class="applicant-card">
+      <p><strong>이름:</strong> 김철수</p>
+      <p><strong>성별:</strong> 남자</p>
+      <p><strong>전화번호:</strong> 010-1234-5678</p>
+      <p><strong>경유지:</strong> 대전</p>
+      <p><strong>메세지:</strong> 함께 즐겁게 가요!</p>
+      <p><strong>신청 날짜:</strong> 2024-11-30</p>
+    </div>
+    <div class="applicant-card">
+      <p><strong>이름:</strong> 박영희</p>
+      <p><strong>성별:</strong> 여자</p>
+      <p><strong>전화번호:</strong> 010-5678-1234</p>
+      <p><strong>경유지:</strong> 청주</p>
+      <p><strong>메세지:</strong> 시간 잘 맞출게요!</p>
+      <p><strong>신청 날짜:</strong> 2024-11-29</p>
+    </div>
+    <div class="applicant-card">
+      <p><strong>이름:</strong> 이민호</p>
+      <p><strong>성별:</strong> 남자</p>
+      <p><strong>전화번호:</strong> 010-9999-8888</p>
+      <p><strong>경유지:</strong> 대구</p>
+      <p><strong>메세지:</strong> 감사합니다!</p>
+      <p><strong>신청 날짜:</strong> 2024-11-28</p>
+    </div>
+  </div>
+  <div class="popup-footer">
+    <button class="close-button" onclick="closePopup()">닫기</button>
+  </div>
+</div>
+
+<script>
+  // 팝업 열기
+  function openPopup() {
+    const popup = document.getElementById('popup');
+    const overlay = document.getElementById('overlay');
+
+    // 팝업과 오버레이를 표시
+    overlay.classList.add('show');
+    popup.classList.add('show');
+
+    // 팝업과 오버레이를 display 상태를 변경
+    overlay.style.visibility = 'visible';
+    popup.style.visibility = 'visible';
+  }
+
+  // 팝업 닫기
+  function closePopup() {
+    const popup = document.getElementById('popup');
+    const overlay = document.getElementById('overlay');
+
+    // 부드럽게 사라지는 효과 적용
+    overlay.classList.remove('show');
+    popup.classList.remove('show');
+
+    // 애니메이션이 끝난 후 display:none 설정
+    setTimeout(() => {
+      overlay.style.visibility = 'hidden';
+      popup.style.visibility = 'hidden';
+    }, 300); // transition과 동일한 시간 설정
+  }
+</script>
+
+
+</body>
+</html>

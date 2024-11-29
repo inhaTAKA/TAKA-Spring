@@ -141,3 +141,91 @@ label {
     display: block;
     margin-bottom: 20px; /* 버튼과 이미지 사이 여백 */
 }
+
+/* 팝업 박스 스타일 */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9); /* 닫을 때 살짝 축소 */
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 500px;
+    max-height: 80%;
+    overflow-y: auto; /* 세로 스크롤 */
+    overflow-x: hidden; /* 가로 스크롤 금지 */
+    opacity: 0; /* 시작 상태: 투명 */
+    visibility: hidden; /* 시작 상태: 보이지 않음 */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.popup.show {
+    opacity: 1; /* 애니메이션 중: 불투명 */
+    visibility: visible; /* 표시 상태 */
+    transform: translate(-50%, -50%) scale(1); /* 확대 */
+}
+
+.popup-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center; /* 텍스트 가운데 정렬 */
+    margin-bottom: 10px;
+}
+
+.popup-body {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #555;
+}
+
+.applicant-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+.applicant-card p {
+    margin: 5px 0;
+}
+
+.popup-footer {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.close-button {
+    background: #ff5c5c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background: #ff3b3b;
+}
+
+/* 어두운 배경 (모달 백그라운드) */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0; /* 시작 상태: 투명 */
+    visibility: hidden; /* 시작 상태: 보이지 않음 */
+    transition: opacity 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.overlay.show {
+    opacity: 1; /* 애니메이션 중: 불투명 */
+    visibility: visible; /* 표시 상태 */
+}
