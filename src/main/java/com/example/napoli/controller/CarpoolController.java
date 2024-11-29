@@ -85,11 +85,13 @@ public class CarpoolController {
     @ResponseBody
     @PostMapping("/requestCarpool")
     public ResponseEntity<?> requestCarpool(@RequestBody Map<String, Object> payload, HttpSession session) {
-        Object carpoolId1 = payload.get("carpoolId");
-        Long carpoolId = Long.parseLong(carpoolId1.toString());
+        Long carpoolId = Long.parseLong(payload.get("carpoolId").toString());
+        String phone = payload.get("phone").toString();
+        String pickupLocation = payload.get("pickupLocation").toString();
+        String message = payload.get("message").toString();
         Long requestUserId = (Long) session.getAttribute("userId");
 
-        bookingService.saveBooking(carpoolId, requestUserId);
+        bookingService.saveBooking(carpoolId, requestUserId, phone, pickupLocation, message);
 
         return ResponseEntity.ok(Map.of("status", "success", "message", "Booking saved successfully."));
     }

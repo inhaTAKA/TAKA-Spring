@@ -29,6 +29,9 @@
                 <div class="request-info">
                     <div class="info-item"><span class="info-value">이름:</span> <span th:text="${booking.getUser().getUsername()}"></span></div>
                     <div class="info-item"><span class="info-value">성별:</span> <span th:text="${booking.getUser().getSex()}"></span></div>
+                    <div class="info-item"><span class="info-value">전화번호:</span> <span th:text="${booking.getPhoneNumber()}"></span></div>
+                    <div class="info-item"><span class="info-value">경유지:</span> <span th:text="${booking.getPickupLocation()}"></span></div>
+                    <div class="info-item"><span class="info-value">메세지:</span> <span th:text="${booking.getMessage()}"></span></div>
                     <div class="request-date">신청날짜: <span th:text="${booking.getBookingTime()}"></span></div>
                 </div>
                 <div class="actions-container">

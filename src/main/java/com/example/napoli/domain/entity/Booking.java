@@ -31,6 +31,15 @@ public class Booking {
     @JoinColumn(name = "CARPOOL_ID")
     private Carpool carpool;
 
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
+
+    @Column(name = "PICKUP_LOCATION")
+    private String pickupLocation;
+
+    @Column(name = "MESSAGE")
+    private String message;
+
     @Column(name = "BOOKING_TIME")
     private LocalDate bookingTime;
 

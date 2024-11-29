@@ -21,13 +21,16 @@ public class BookingService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void saveBooking(Long carpoolId, Long requestUserId) {
+    public void saveBooking(Long carpoolId, Long requestUserId, String phone, String pickupLocation, String message) {
         Carpool carpool = carpoolRepository.findById(carpoolId).orElse(null);
         User user = userRepository.findById(requestUserId).orElse(null);
 
         Booking booking = Booking.builder()
                 .user(user)
                 .carpool(carpool)
+                .phoneNumber(phone)
+                .pickupLocation(pickupLocation)
+                .message(message)
                 .bookingTime(LocalDate.now())
                 .requestStatus(false)
                 .build();
