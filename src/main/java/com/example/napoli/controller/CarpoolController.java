@@ -1,9 +1,11 @@
 package com.example.napoli.controller;
 
+import com.example.napoli.domain.dto.BookingDto;
 import com.example.napoli.domain.entity.Booking;
 import com.example.napoli.domain.entity.Carpool;
 import com.example.napoli.service.BookingService;
 import com.example.napoli.service.Carpool.CarpoolService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +22,8 @@ public class CarpoolController {
 
     private final CarpoolService carpoolService;
     private final BookingService bookingService;
-    private final ControllerUtils controllerUtils = new ControllerUtils();
 
-    @GetMapping("/myCarpools") // 내 카풀 목록 페이지 경로 추가
-    public String myCarpoolsPage() {
-        return "/car/myCarpools"; // 'templates/car/myCarpools.html' 반환
-    }
+    private final ControllerUtils controllerUtils = new ControllerUtils();
 
     @GetMapping("/searchCarpools")
     public String GetCarpoolSearchResults(@ModelAttribute Carpool carpool, Model model, HttpSession session) {
@@ -101,4 +99,20 @@ public class CarpoolController {
         return ResponseEntity.ok(Map.of("status", "success", "message", "Booking saved successfully."));
     }
 
+    @GetMapping("/bookings/{carpoolId}")
+    @ResponseBody
+    public ResponseEntity<List<BookingDto>> getCarpoolBookings(@PathVariable Long carpoolId) {
+        List<Booking> bookings = bookingService.findBookingByCarpoolId(carpoolId);
+
+        List<BookingDto> bookingDTOs = bookings.stream()
+                .map(booking -> new BookingDto(
+                        booking.getUser().getName(),
+                        booking.getPhoneNumber(),
+                        booking.getPickupLocation(),
+                        booking.getMessage()
+                ))
+                .toList();
+
+        return ResponseEntity.ok(bookingDTOs);
+    }
 }

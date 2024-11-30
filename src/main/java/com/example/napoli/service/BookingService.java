@@ -7,6 +7,7 @@ import com.example.napoli.domain.repository.BookingRepository;
 import com.example.napoli.domain.repository.CarpoolRepository;
 import com.example.napoli.domain.repository.UserRepository;
 import java.time.LocalDate;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,7 @@ public class BookingService {
         bookingRepository.save(booking);
     }
 
-    public Booking findBookingById(Long bookingId) {
-        return bookingRepository.findById(bookingId).orElse(null);
+    public List<Booking> findBookingByCarpoolId(Long carpoolId) {
+        return bookingRepository.findByCarpool_CarpoolId(carpoolId);
     }
 }

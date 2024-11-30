@@ -7,6 +7,7 @@ import com.example.napoli.domain.entity.User;
 import com.example.napoli.service.BookingService;
 import com.example.napoli.service.Carpool.CarpoolService;
 import com.example.napoli.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -90,5 +91,15 @@ public class UserController {
     public String carpoolRequestAccept(@PathVariable("bookingId") Long bookingId, @PathVariable("carpoolId") Long carpoolId) {
         userService.acceptCarpoolRequest(carpoolId, bookingId);
         return "redirect:/myCarpoolRequest";
+    }
+
+    @GetMapping("/carpools/myCarpools") // 내 카풀 목록 페이지 경로 추가
+    public String myCarpoolsPage(Model model, HttpSession session) throws Exception{
+        User user = userService.findByUserId((Long) session.getAttribute("userId"));
+        List<Carpool> carpools = user.getCarPools();
+
+        model.addAttribute("carpools", carpools);
+
+        return "/car/myCarpools"; // 'templates/car/myCarpools.html' 반환
     }
 }
