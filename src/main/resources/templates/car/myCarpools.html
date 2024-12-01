@@ -29,17 +29,16 @@
     </aside>
 
     <!-- 메인 콘텐츠 -->
-    <section th:each="carpool : ${carpools}" class="content">
+    <section class="content">
         <h2>내 카풀 목록</h2>
         <div class="carpool-cards">
             <!-- 단일 더미 카드 -->
-            <div class="carpool-card">
+            <div th:each="carpool : ${carpools}" class="carpool-card">
                 <div class="card-header">
                     <h3 th:text="|${carpool.getFirstStartAddress()} -> ${carpool.getFirstArriveAddress()}|"></h3>
                 </div>
                 <div class="card-body">
                     <p>출발 시간: 2024-12-01 09:00</p>
-                    <p th:text="|신청자 수: ${carpool.getBooking().size()}|"></p>
                     <p>차량 정보: 흰색 소나타</p>
                 </div>
                 <div class="card-footer">
@@ -81,7 +80,8 @@
                 let popupContent = '';
                 bookings.forEach(booking => {
                     console.log('Booking:', booking); // booking 객체 구조 확인
-                    popupContent += `
+                    if (booking.status) {
+                        popupContent += `
                     <div class="booking-info">
                         <p><strong>신청자 이름:</strong> ${booking.userName}</p>
                         <p><strong>전화번호:</strong> ${booking.phoneNumber}</p>
@@ -90,6 +90,7 @@
                     </div>
                     <hr>
                 `;
+                    }
                 });
                 document.querySelector('.popup-body').innerHTML = popupContent;
 

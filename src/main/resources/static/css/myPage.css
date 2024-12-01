@@ -163,8 +163,8 @@ main {
 /* 카드 스타일 */
 .carpool-cards {
     display: flex;
-    justify-content: center; /* 카드 수평 가운데 정렬 */
-    margin-top: 20px;
+    flex-direction: column; /* 카드 수평 가운데 정렬 */
+    gap: 30px;
 }
 
 .carpool-card {

@@ -109,7 +109,8 @@ public class CarpoolController {
                         booking.getUser().getName(),
                         booking.getPhoneNumber(),
                         booking.getPickupLocation(),
-                        booking.getMessage()
+                        booking.getMessage(),
+                        booking.getRequestStatus()
                 ))
                 .toList();
 

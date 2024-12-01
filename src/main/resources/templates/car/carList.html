@@ -75,13 +75,13 @@
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>상세 정보 입력</h2>
         <form id="applyForm">
-            <label for="phone">전화번호:</label>
-            <input type="text" id="phone" name="phone" required>
-            <label for="pickupLocation">픽업 요청 지역:</label>
-            <input type="text" id="pickupLocation" name="pickupLocation" required>
-            <label for="message">메시지:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">신청하기</button>
+                <label for="phone">전화번호:</label>
+                <input type="text" id="phone" name="phone" required>
+                <label for="pickupLocation">픽업 요청 지역:</label>
+                <input type="text" id="pickupLocation" name="pickupLocation" required>
+                <label for="message">메시지:</label>
+                <textarea id="message" name="message"></textarea>
+                <button type="submit">신청하기</button>
         </form>
     </div>
 </div>
@@ -89,12 +89,16 @@
 <script>
     function openModal(button) {
         const carpoolId = button.closest('.info-container').querySelector('.carpool-id').value;
-        document.getElementById('applyModal').style.display = 'block';
+        const modal = document.getElementById('applyModal');
+        modal.style.display = 'block';
+        setTimeout(() => modal.classList.add('show'), 10); // 전환 효과를 위해 약간의 지연 추가
         document.getElementById('applyForm').dataset.carpoolId = carpoolId; // 카풀 ID를 데이터 속성에 저장
     }
 
     function closeModal() {
-        document.getElementById('applyModal').style.display = 'none';
+        const modal = document.getElementById('applyModal');
+        modal.classList.remove('show');
+        setTimeout(() => modal.style.display = 'none', 300); // 전환 효과가 끝난 후 숨김
     }
 
     window.onclick = function (event) {
@@ -127,7 +131,12 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ carpoolId: carpoolId, phone: phone, pickupLocation: pickupLocation, message: message}),
+                body: JSON.stringify({
+                    carpoolId: carpoolId,
+                    phone: phone,
+                    pickupLocation: pickupLocation,
+                    message: message
+                }),
             });
 
             const data = await response.json();

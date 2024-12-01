@@ -14,4 +14,5 @@ public class BookingDto {
     private String phoneNumber;
     private String pickupLocation;
     private String message;
+    private boolean status;
 }
