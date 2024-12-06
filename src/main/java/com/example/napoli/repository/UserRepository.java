@@ -1,4 +1,4 @@
-package com.example.napoli.domain.repository;
+package com.example.napoli.repository;
 
 import com.example.napoli.domain.entity.Carpool;
 import com.example.napoli.domain.entity.User;

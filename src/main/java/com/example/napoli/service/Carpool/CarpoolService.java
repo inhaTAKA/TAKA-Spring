@@ -1,8 +1,8 @@
 package com.example.napoli.service.Carpool;
 
 import com.example.napoli.domain.entity.Carpool;
-import com.example.napoli.domain.repository.CarpoolRepository;
-import com.example.napoli.domain.repository.UserRepository;
+import com.example.napoli.repository.CarpoolRepository;
+import com.example.napoli.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,13 +38,18 @@ public class CarpoolService {
             carpoolRepository.delete(carpool.get());
             return true;
         }
-
         return false;
     }
 
-    public List<Carpool> searchCarpool(Carpool carpool) {
-        return carpoolRepository.searchCarpool(carpool.getFirstStartAddress(),
-                carpool.getFirstArriveAddress(), carpool.getMinDesiredCharge(), carpool.getMaxDesiredCharge(),
+    public List<Carpool> searchCarpools(Carpool carpool) {
+        String startKeyword = carpool.getFirstStartAddress();
+        String arriveKeyword = carpool.getFirstArriveAddress();
+
+        // 데이터베이스에서 검색 수행
+        return carpoolRepository.searchCarpool(startKeyword.trim(),
+                arriveKeyword.trim(),
+                carpool.getMinDesiredCharge(),
+                carpool.getMaxDesiredCharge(),
                 carpool.getSex());
     }
 }

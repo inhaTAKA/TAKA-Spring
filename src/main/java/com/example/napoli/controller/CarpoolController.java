@@ -30,11 +30,14 @@ public class CarpoolController {
         if (controllerUtils.verifyUserSession(session)) {
             return "redirect:/login";
         }
-
-        List<Carpool> searchResults = carpoolService.searchCarpool(carpool);
+        List<Carpool> searchResults = carpoolService.searchCarpools(carpool);
 
         if (searchResults != null) {
+            Map<String, List<Boolean>> userSpecificInfo = extractUserSpecificInfo(searchResults, session);
             model.addAttribute("carpools", searchResults);
+            model.addAttribute("isApplieds", userSpecificInfo.get("isApplieds"));
+            model.addAttribute("isMyCarpool", userSpecificInfo.get("isMyCarpool"));
+
         }
 
         return "/car/carList";
@@ -45,34 +48,49 @@ public class CarpoolController {
         if (controllerUtils.verifyUserSession(session)) {
             return "redirect:/login";
         }
+
         List<Carpool> allCarpool = carpoolService.getAllCarpool();
+
+        // Use the extracted method
+        Map<String, List<Boolean>> userSpecificInfo = extractUserSpecificInfo(allCarpool, session);
+
+        // Reverse the lists
+        Collections.reverse(allCarpool);
+        Collections.reverse(userSpecificInfo.get("isApplieds"));
+        Collections.reverse(userSpecificInfo.get("isMyCarpool"));
+
+        // Add attributes to the model
+        model.addAttribute("carpools", allCarpool);
+        model.addAttribute("isApplieds", userSpecificInfo.get("isApplieds"));
+        model.addAttribute("isMyCarpool", userSpecificInfo.get("isMyCarpool"));
+
+        return "/car/carList";
+    }
+
+    private Map<String, List<Boolean>> extractUserSpecificInfo(List<Carpool> allCarpool, HttpSession session) {
         List<Boolean> isApplieds = new ArrayList<>();
         List<Boolean> isMyCarpool = new ArrayList<>();
+        Long userId = (Long) session.getAttribute("userId");
+
         for (Carpool carpool : allCarpool) {
-            if (carpool.getUser().getUserId() == session.getAttribute("userId")) {
-                isMyCarpool.add(true);
-            } else {
-                isMyCarpool.add(false);
-            }
+            // Check if the carpool belongs to the user
+            isMyCarpool.add(carpool.getUser().getUserId().equals(userId));
+
+            // Check if the user has applied for this carpool
             if (carpool.getBooking().isEmpty()) {
                 isApplieds.add(false);
-            }
-            for (Booking booking : carpool.getBooking()) {
-                if (booking.getUser().getUserId() == session.getAttribute("userId")) {
-                    isApplieds.add(true);
-                } else {
-                    isApplieds.add(false);
-                }
+            } else {
+                boolean hasApplied = carpool.getBooking().stream()
+                        .anyMatch(booking -> booking.getUser().getUserId().equals(userId));
+                isApplieds.add(hasApplied);
             }
         }
-        Collections.reverse(allCarpool);
-        Collections.reverse(isApplieds);
-        Collections.reverse(isMyCarpool);
 
-        model.addAttribute("carpools", allCarpool);
-        model.addAttribute("isApplieds", isApplieds);
-        model.addAttribute("isMyCarpool", isMyCarpool);
-        return "/car/carList";
+        Map<String, List<Boolean>> result = new HashMap<>();
+        result.put("isApplieds", isApplieds);
+        result.put("isMyCarpool", isMyCarpool);
+
+        return result;
     }
 
     @PostMapping("/registerCar")
